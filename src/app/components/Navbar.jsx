@@ -14,10 +14,13 @@ const spareParts = [
 ];
 
 const services = [
-  "PLC Programming",
   "Industrial Automation",
-  "Robotics Integration",
-  "IIoT Solutions",
+  "Process Automation",
+  "Machine Safety",
+  "Electrical Engineering, installation & maintenance",
+  "Mechanical installation & maintenance",
+  "Welding Services",
+  "Project management",
 ];
 
 export default function Navbar() {
@@ -41,9 +44,9 @@ export default function Navbar() {
           {/* Desktop Menu */}
           <ul className="hidden lg:flex items-center gap-10 text-sm font-bold text-black">
             <NavLink href="/" label="Home" pathname={pathname} />
-            <Dropdown title="Spare Parts" items={spareParts} />
             <Dropdown title="Services" items={services} />
-            <NavLink href="/about" label="About Us" pathname={pathname} />
+            <Dropdown title="Projects" items={spareParts} />
+            <NavLink href="/about" label="About" pathname={pathname} />
             <NavLink href="/contact" label="Contact" pathname={pathname} />
           </ul>
 
