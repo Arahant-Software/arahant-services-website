@@ -1,6 +1,8 @@
 "use client";
 
 import Image from "next/image";
+import { motion } from "framer-motion";
+import { FadeUp, FadeLeft, FadeRight, StaggerContainer, StaggerChild, Counter } from "./ui/Motion";
 
 const partners = [
   { name: "Siemens", logo: "/partners/siemens.webp" },
@@ -41,7 +43,7 @@ const capabilityCards = [
 
 export default function TechnologyPartners() {
   return (
-    <section className="relative overflow-hidden bg-white py-20 lg:py-32">
+    <section className="relative overflow-hidden bg-gradient-to-br from-slate-50/80 via-white to-orange-50/30 py-20 lg:py-32">
       {/* Background Effects */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute -left-32 top-0 h-[500px] w-[500px] rounded-full bg-orange-100/50 blur-3xl" />
@@ -53,76 +55,92 @@ export default function TechnologyPartners() {
 
       <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
         {/* Header */}
-        <div className="text-center">
-          <span className="inline-flex rounded-full border border-orange-200 bg-orange-50 px-4 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-orange-600">
-            Technology Partners
-          </span>
-
-          <h2 className="mt-6 text-3xl font-bold leading-tight text-slate-900 sm:text-4xl lg:text-5xl xl:text-6xl">
-            Trusted Industrial
-            <span className="block text-orange-600">Technology Partners</span>
-          </h2>
-
-          <div className="mx-auto mt-5 h-1 w-20 rounded-full bg-orange-500" />
-
-          <p className="mx-auto mt-6 max-w-3xl text-base sm:text-lg leading-8 text-slate-600">
-            We collaborate with globally recognised automation,
-            instrumentation, motion control and process technology
-            manufacturers to deliver reliable, scalable and future-ready
-            industrial solutions.
-          </p>
-        </div>
+        <FadeUp>
+          <div className="text-center">
+            <span className="inline-flex rounded-full border border-orange-200 bg-orange-50 px-4 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-orange-600">
+              Technology Partners
+            </span>
+            <h2 className="mt-6 text-3xl font-bold leading-tight text-slate-900 sm:text-4xl lg:text-5xl xl:text-6xl">
+              Trusted Industrial
+              <span className="block text-orange-600">Technology Partners</span>
+            </h2>
+            <div className="mx-auto mt-5 h-1 w-20 rounded-full bg-orange-500" />
+            <p className="mx-auto mt-6 max-w-3xl text-base sm:text-lg leading-8 text-slate-600">
+              We collaborate with globally recognised automation,
+              instrumentation, motion control and process technology
+              manufacturers to deliver reliable, scalable and future-ready
+              industrial solutions.
+            </p>
+          </div>
+        </FadeUp>
 
         {/* Banner */}
-        <div className="mt-12 lg:mt-20 overflow-hidden rounded-3xl border border-slate-200 bg-gradient-to-r from-orange-50 via-white to-orange-50 p-6 sm:p-10 shadow-[0_10px_40px_rgba(0,0,0,0.05)]">
-          <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-            <div className="text-center lg:text-left flex-shrink-0">
-              <div className="text-5xl sm:text-6xl font-bold text-orange-600">14+</div>
-              <div className="mt-2 text-sm sm:text-base text-slate-600">Global Technology Partners</div>
-            </div>
-            <div className="max-w-2xl text-center text-sm sm:text-lg leading-8 text-slate-600 lg:text-left">
-              Access to leading automation, machine safety, process control,
-              instrumentation and industrial digitalisation technologies trusted
-              by manufacturers worldwide.
+        <FadeUp delay={0.1}>
+          <div className="mt-12 lg:mt-20 overflow-hidden rounded-3xl border border-white/50 bg-white/60 backdrop-blur-md p-6 sm:p-10 shadow-[0_10px_40px_rgba(249,115,22,0.08)]">
+            <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+              <div className="text-center lg:text-left flex-shrink-0">
+                <div className="text-5xl sm:text-6xl font-bold text-orange-600">
+                  <Counter to={14} suffix="+" />
+                </div>
+                <div className="mt-2 text-sm sm:text-base text-slate-600">Global Technology Partners</div>
+              </div>
+              <div className="max-w-2xl text-center text-sm sm:text-lg leading-8 text-slate-600 lg:text-left">
+                Access to leading automation, machine safety, process control,
+                instrumentation and industrial digitalisation technologies trusted
+                by manufacturers worldwide.
+              </div>
             </div>
           </div>
-        </div>
+        </FadeUp>
 
-        {/* Logo Grid */}
-        <div className="mt-12 lg:mt-20">
-          <div className="rounded-3xl border border-slate-200 bg-white p-6 sm:p-10 lg:p-14 shadow-[0_15px_50px_rgba(0,0,0,0.06)]">
-            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-              {partners.map((partner) => (
-                <div
+        {/* ── Logo Grid ── */}
+        <FadeUp delay={0.15}>
+          <div className="mt-12 lg:mt-20 rounded-3xl border border-white/50 bg-white/60 backdrop-blur-md p-6 sm:p-8 shadow-[0_15px_50px_rgba(249,115,22,0.07)]">
+            <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-5">
+              {partners.map((partner, i) => (
+                <motion.div
                   key={partner.name}
-                  className="group flex items-center justify-center rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 transition-all duration-500 hover:-translate-y-1 hover:border-orange-300 hover:shadow-[0_15px_40px_rgba(249,115,22,0.12)]"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ duration: 0.4, delay: i * 0.05 }}
+                  whileHover={{
+                    y: -6,
+                    scale: 1.06,
+                    borderColor: "#fb923c",
+                    boxShadow: "0 12px 32px rgba(249,115,22,0.18)",
+                  }}
+                  className="flex items-center justify-center rounded-2xl border border-white/50 bg-white/70 backdrop-blur-sm p-4 sm:p-5 h-[80px] sm:h-[95px] cursor-pointer"
                 >
                   <Image
                     src={partner.logo}
                     alt={partner.name}
-                    width={160}
-                    height={70}
-                    className="h-[45px] sm:h-[55px] w-auto max-w-[120px] sm:max-w-[140px] object-contain transition-all duration-500 group-hover:scale-110"
+                    width={120}
+                    height={50}
+                    className="h-[35px] sm:h-[45px] w-auto max-w-[90px] sm:max-w-[110px] object-contain"
                   />
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
-        </div>
+        </FadeUp>
 
         {/* Capability Cards */}
-        <div className="mt-10 lg:mt-16 grid gap-5 sm:grid-cols-3">
+        <StaggerContainer stagger={0.12} delay={0.05} className="mt-10 lg:mt-16 grid gap-5 sm:grid-cols-3">
           {capabilityCards.map((card) => (
-            <div
-              key={card.title}
-              className="rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 shadow-[0_10px_30px_rgba(0,0,0,0.04)] transition-all duration-500 hover:-translate-y-1 hover:border-orange-300"
-            >
-              <div className="text-4xl sm:text-5xl font-bold text-orange-600">{card.tag}</div>
-              <h4 className="mt-4 text-lg sm:text-xl font-bold text-slate-900">{card.title}</h4>
-              <p className="mt-3 text-sm sm:text-base text-slate-600 leading-7">{card.description}</p>
-            </div>
+            <StaggerChild key={card.title}>
+              <motion.div
+                whileHover={{ y: -6, borderColor: "#fdba74" }}
+                transition={{ duration: 0.25 }}
+                className="rounded-3xl border border-white/60 bg-white/70 backdrop-blur-md p-6 sm:p-8 shadow-[0_10px_30px_rgba(249,115,22,0.06)]"
+              >
+                <div className="text-4xl sm:text-5xl font-bold text-orange-600">{card.tag}</div>
+                <h4 className="mt-4 text-lg sm:text-xl font-bold text-slate-900">{card.title}</h4>
+                <p className="mt-3 text-sm sm:text-base text-slate-600 leading-7">{card.description}</p>
+              </motion.div>
+            </StaggerChild>
           ))}
-        </div>
+        </StaggerContainer>
       </div>
     </section>
   );

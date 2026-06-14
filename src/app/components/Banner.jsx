@@ -1,12 +1,28 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { ArrowRight, Settings, Wrench } from "lucide-react";
+
+const contentVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.13, delayChildren: 0.3 } },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 35 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: "easeOut" } },
+};
+
+const tagItem = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: { opacity: 1, scale: 1, transition: { duration: 0.4, ease: "easeOut" } },
+};
 
 export default function Banner() {
   return (
-    <section className="relative min-h-screen overflow-hidden bg-black">
+    <section className="relative min-h-screen overflow-hidden bg-[#1e2428]">
       {/* Background Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#333333] via-black to-[#333333]" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#2a2f34] via-[#1e2428] to-[#2a2f34]" />
 
       {/* Grid Overlay */}
       <div
@@ -21,75 +37,113 @@ export default function Banner() {
       />
 
       {/* Glow Effects */}
-      <div className="absolute top-24 left-0 w-72 h-72 bg-[#ec6220]/20 blur-[120px] rounded-full" />
-      <div className="absolute bottom-10 right-0 w-96 h-96 bg-[#ec6220]/20 blur-[150px] rounded-full" />
+      <motion.div
+        className="absolute top-24 left-0 w-72 h-72 bg-[#ec6220]/20 blur-[120px] rounded-full"
+        animate={{ scale: [1, 1.2, 1], opacity: [0.4, 0.7, 0.4] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div
+        className="absolute bottom-10 right-0 w-96 h-96 bg-[#ec6220]/20 blur-[150px] rounded-full"
+        animate={{ scale: [1, 1.15, 1], opacity: [0.3, 0.6, 0.3] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+      />
       <div className="absolute top-16 right-24 w-36 h-36 bg-[#ec6220]/10 blur-[80px] rounded-full" />
       <div className="absolute right-10 top-1/3 w-60 h-60 bg-white/6 blur-[140px] rounded-full" />
 
       {/* Decorative large "A" — desktop only */}
-      <div className="absolute top-8 right-12 hidden lg:block pointer-events-none">
-        <span className="text-[260px] font-black text-[#ec6220]/8 leading-none select-none opacity-24">
+      <motion.div
+        className="absolute top-8 right-12 hidden lg:block pointer-events-none"
+        initial={{ opacity: 0, scale: 0.7 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.2, ease: "easeOut", delay: 0.5 }}
+      >
+        <span className="text-[260px] font-black text-[#ec6220]/8 leading-none select-none">
           A
         </span>
-      </div>
+      </motion.div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-12 min-h-screen flex items-center">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 w-full py-24 lg:py-0">
 
-          {/* Left Content */}
-          <div className="w-full lg:w-1/2">
-            <span className="inline-block border border-[#ec6220]/50 rounded-full px-4 py-2 text-[11px] sm:text-xs tracking-widest text-white font-bold mb-6">
+          {/* Left Content — staggered */}
+          <motion.div
+            className="w-full lg:w-1/2"
+            variants={contentVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            <motion.span
+              variants={item}
+              className="inline-block border border-[#ec6220]/50 rounded-full px-4 py-2 text-[11px] sm:text-xs tracking-widest text-white font-bold mb-6"
+            >
               AUTOMATION • ELECTRICAL • PROCESS INSTALLATION
-            </span>
+            </motion.span>
 
-            <h1 className="text-white font-bold leading-tight text-3xl sm:text-4xl md:text-5xl lg:text-6xl max-w-2xl">
+            <motion.h1
+              variants={item}
+              className="text-white font-bold leading-tight text-3xl sm:text-4xl md:text-5xl lg:text-6xl max-w-2xl"
+            >
               Control system solutions for high-performing industrial sites.
-            </h1>
+            </motion.h1>
 
-            <p className="mt-6 text-gray-300 text-base sm:text-lg max-w-xl leading-relaxed">
+            <motion.p variants={item} className="mt-6 text-gray-300 text-base sm:text-lg max-w-xl leading-relaxed">
               Arahant delivers practical automation, electrical engineering and
               process installation solutions for industries including
               manufacturing, FMCG and process plants across New Zealand and the
               Pacific.
-            </p>
+            </motion.p>
 
-            <div className="flex flex-wrap gap-4 mt-8">
-              <a
+            <motion.div variants={item} className="flex flex-wrap gap-4 mt-8">
+              <motion.a
                 href="/contact"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.97 }}
                 className="inline-block bg-[#ec6220] hover:bg-[#ff7a35] transition px-7 py-3.5 rounded-full text-white font-semibold text-sm sm:text-base"
               >
                 Talk to Us
-              </a>
+              </motion.a>
 
-              <a
+              <motion.a
                 href="/about"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.97 }}
                 className="inline-flex items-center gap-2 border border-white/20 hover:border-white/50 transition px-7 py-3.5 rounded-full text-white text-sm sm:text-base"
               >
                 Learn More
                 <ArrowRight size={16} />
-              </a>
-            </div>
+              </motion.a>
+            </motion.div>
 
-            <div className="flex flex-wrap gap-2 sm:gap-3 mt-8">
-              {["PLC", "HMI", "SCADA", "Vision", "Panels", "3D Design"].map((item) => (
-                <span
-                  key={item}
-                  className="px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-white/10 bg-white/5 text-white text-xs sm:text-sm"
+            <motion.div
+              variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.07, delayChildren: 0.8 } } }}
+              initial="hidden"
+              animate="visible"
+              className="flex flex-wrap gap-2 sm:gap-3 mt-8"
+            >
+              {["PLC", "HMI", "SCADA", "Vision", "Panels", "3D Design"].map((tag) => (
+                <motion.span
+                  key={tag}
+                  variants={tagItem}
+                  whileHover={{ scale: 1.1, borderColor: "rgba(236,98,32,0.6)" }}
+                  className="px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-white/10 bg-white/5 text-white text-xs sm:text-sm cursor-default"
                 >
-                  {item}
-                </span>
+                  {tag}
+                </motion.span>
               ))}
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
-          {/* Right Diagram — desktop only */}
-          <div className="hidden lg:flex w-1/2 justify-center">
+          {/* Right Diagram — desktop only, slides in from right */}
+          <motion.div
+            className="hidden lg:flex w-1/2 justify-center"
+            initial={{ opacity: 0, x: 80 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.9, ease: "easeOut", delay: 0.5 }}
+          >
             <div className="relative">
               <div className="bg-white/10 backdrop-blur-xl border border-white/10 rounded-[30px] p-10 w-[420px] h-[360px] relative overflow-hidden">
                 <div className="absolute inset-0 rounded-[30px] bg-gradient-to-br from-[#ec6220]/10 via-transparent to-[#ec6220]/20" />
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(236,98,32,0.14),_transparent_45%)] rounded-[30px]" />
-                <div className="absolute inset-0 w-full h-full bg-gradient-to-tr from-black/10 via-transparent to-transparent rounded-[30px]" />
-                <div className="absolute inset-0 w-full h-full bg-[linear-gradient(180deg,_rgba(255,255,255,0.04)_0%,_transparent_45%)] rounded-[30px] pointer-events-none" />
 
                 {/* Connection Lines */}
                 <svg className="absolute inset-0 w-full h-full" style={{ pointerEvents: "none" }}>
@@ -121,7 +175,11 @@ export default function Banner() {
               </div>
 
               {/* Floating Cards */}
-              <div className="absolute -top-8 right-0 bg-white rounded-2xl p-4 shadow-xl flex items-center gap-3 opacity-80">
+              <motion.div
+                className="absolute -top-8 right-0 bg-white/80 backdrop-blur-md rounded-2xl p-4 shadow-xl flex items-center gap-3 border border-white/60"
+                animate={{ y: [0, -8, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              >
                 <div className="w-10 h-10 rounded-full bg-orange-50 flex items-center justify-center text-[#ec6220]">
                   <Settings size={20} />
                 </div>
@@ -129,9 +187,13 @@ export default function Banner() {
                   <p className="font-semibold text-sm text-gray-900">Engineer & Build</p>
                   <p className="text-xs text-gray-500">Design • Manufacture</p>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="absolute -bottom-6 -left-8 bg-white rounded-2xl p-4 shadow-xl flex items-center gap-3 opacity-80">
+              <motion.div
+                className="absolute -bottom-6 -left-8 bg-white/80 backdrop-blur-md rounded-2xl p-4 shadow-xl flex items-center gap-3 border border-white/60"
+                animate={{ y: [0, -8, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+              >
                 <div className="w-10 h-10 rounded-full bg-orange-50 flex items-center justify-center text-[#ec6220]">
                   <Wrench size={20} />
                 </div>
@@ -139,9 +201,9 @@ export default function Banner() {
                   <p className="font-semibold text-sm text-gray-900">Commission & Support</p>
                   <p className="text-xs text-gray-500">Upgrades & Maintenance</p>
                 </div>
-              </div>
+              </motion.div>
             </div>
-          </div>
+          </motion.div>
 
         </div>
       </div>
