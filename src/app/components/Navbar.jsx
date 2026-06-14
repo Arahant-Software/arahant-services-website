@@ -30,19 +30,16 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-gray-200">
-      <nav className="max-w-7xl mx-auto px-6">
-        <div className="flex items-center justify-between pt-2 pb-2">
+      <nav className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+        {/* Top Bar */}
+        <div className="flex items-center justify-between h-16 sm:h-18">
           {/* Logo */}
-          <Link href="/" className="flex items-center relative w-35 h-12">
-            <Image
-              fill
-              src="/logo.png"
-              alt="Company Logo"
-            />
+          <Link href="/" className="flex items-center relative w-32 sm:w-36 h-10 sm:h-12 flex-shrink-0">
+            <Image fill src="/logo.png" alt="Arahant Services Logo" className="object-contain object-left" />
           </Link>
 
           {/* Desktop Menu */}
-          <ul className="hidden lg:flex items-center gap-10 text-sm font-bold text-black">
+          <ul className="hidden lg:flex items-center gap-8 xl:gap-10 text-sm font-bold text-black">
             <NavLink href="/" label="Home" pathname={pathname} />
             <Dropdown title="Services" items={services} />
             <Dropdown title="Projects" items={spareParts} />
@@ -51,11 +48,12 @@ export default function Navbar() {
           </ul>
 
           {/* Right Side */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <Link
               href="https://www.linkedin.com/company/your-company"
               target="_blank"
-              className="hidden sm:flex rounded-md border border-gray-300 p-2 text-gray-700 hover:text-brand-orange hover:border-brand-orange transition text-xl"
+              rel="noopener noreferrer"
+              className="hidden sm:flex rounded-md border border-gray-300 p-2 text-gray-700 hover:text-brand-orange hover:border-brand-orange transition text-lg"
             >
               <FaLinkedinIn />
             </Link>
@@ -63,7 +61,8 @@ export default function Navbar() {
             {/* Mobile Toggle */}
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="lg:hidden text-2xl text-gray-700"
+              className="lg:hidden p-2 text-xl text-gray-700 hover:text-orange-500 transition"
+              aria-label="Toggle menu"
             >
               {menuOpen ? <FaTimes /> : <FaBars />}
             </button>
@@ -73,7 +72,7 @@ export default function Navbar() {
         {/* Mobile Menu */}
         {menuOpen && (
           <div className="lg:hidden border-t border-gray-200 pb-6">
-            <ul className="flex flex-col gap-4 mt-6 text-gray-800 font-medium">
+            <ul className="flex flex-col gap-1 mt-4 text-gray-800 font-medium">
               <MobileLink href="/" label="Home" setMenuOpen={setMenuOpen} />
 
               <MobileDropdown
@@ -93,6 +92,19 @@ export default function Navbar() {
               <MobileLink href="/about" label="About Us" setMenuOpen={setMenuOpen} />
               <MobileLink href="/contact" label="Contact" setMenuOpen={setMenuOpen} />
             </ul>
+
+            {/* LinkedIn in mobile */}
+            <div className="mt-5 pt-4 border-t border-gray-100">
+              <Link
+                href="https://www.linkedin.com/company/your-company"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-orange-500 transition px-3 py-2"
+              >
+                <FaLinkedinIn />
+                <span>LinkedIn</span>
+              </Link>
+            </div>
           </div>
         )}
       </nav>
@@ -106,10 +118,13 @@ function NavLink({ href, label, pathname }) {
   const isActive = pathname === href;
   return (
     <li className="relative group">
-      <Link href={href} className={`hover:text-gray-500 transition ${isActive ? 'text-brand-orange' : ''}`}>
+      <Link
+        href={href}
+        className={`hover:text-orange-500 transition ${isActive ? "text-orange-500" : ""}`}
+      >
         {label}
       </Link>
-      <span className="absolute left-0 -bottom-2 h-[2px] w-0 bg-brand-orange group-hover:w-full transition-all" />
+      <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-orange-500 group-hover:w-full transition-all duration-300" />
     </li>
   );
 }
@@ -117,18 +132,18 @@ function NavLink({ href, label, pathname }) {
 function Dropdown({ title, items }) {
   return (
     <li className="relative group">
-      <span className="cursor-pointer hover:text-gray-500 transition flex items-center gap-1">
+      <span className="cursor-pointer hover:text-orange-500 transition flex items-center gap-1">
         {title}
-        <FaChevronDown className="text-xs" />
+        <FaChevronDown className="text-[10px] mt-0.5" />
       </span>
 
-      <div className="absolute left-0 top-full invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-300">
-        <div className="mt-6 w-64 rounded-xl bg-white shadow-xl border">
+      <div className="absolute left-0 top-full invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-300 pt-4">
+        <div className="w-64 rounded-2xl bg-white shadow-xl border border-slate-100 overflow-hidden">
           {items.map((item) => (
             <Link
               key={item}
               href="#"
-              className="block px-5 py-3 text-sm hover:bg-brand-light text-gray-600 hover:text-brand-orange transition"
+              className="block px-5 py-3 text-sm hover:bg-orange-50 text-gray-600 hover:text-orange-500 transition"
             >
               {item}
             </Link>
@@ -147,7 +162,7 @@ function MobileLink({ href, label, setMenuOpen }) {
       <Link
         href={href}
         onClick={() => setMenuOpen(false)}
-        className="block px-2 py-2 hover:text-brand-orange transition"
+        className="block px-3 py-2.5 rounded-xl text-sm hover:bg-orange-50 hover:text-orange-500 transition"
       >
         {label}
       </Link>
@@ -162,19 +177,19 @@ function MobileDropdown({ title, items, openDropdown, setOpenDropdown }) {
     <li>
       <button
         onClick={() => setOpenDropdown(isOpen ? null : title)}
-        className="w-full text-left px-2 py-2 flex justify-between items-center hover:text-brand-orange"
+        className="w-full text-left px-3 py-2.5 rounded-xl flex justify-between items-center text-sm hover:bg-orange-50 hover:text-orange-500 transition"
       >
         {title}
-        <span>{isOpen ? "−" : "+"}</span>
+        <span className="text-lg leading-none">{isOpen ? "−" : "+"}</span>
       </button>
 
       {isOpen && (
-        <div className="ml-4 mt-2 border-l pl-4">
+        <div className="ml-4 mt-1 border-l-2 border-orange-200 pl-4 pb-1">
           {items.map((item) => (
             <Link
               key={item}
               href="#"
-              className="block py-2 text-sm hover:text-brand-orange transition"
+              className="block py-2 text-xs sm:text-sm text-gray-600 hover:text-orange-500 transition"
             >
               {item}
             </Link>
