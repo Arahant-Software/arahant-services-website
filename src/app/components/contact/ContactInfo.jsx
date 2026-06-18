@@ -1,20 +1,21 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Phone, Mail, MapPin, Clock } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, Clock3 } from "lucide-react";
 
 const cards = [
   { icon: Phone, title: "Call Us", value: "+64 XX XXX XXXX" },
   { icon: Mail, title: "Email", value: "info@arahant.co.nz" },
   { icon: MapPin, title: "Location", value: "New Zealand" },
   { icon: Clock, title: "Working Hours", value: "Mon – Fri | 8:00 AM – 5:00 PM" },
+  { icon: Clock3, title: "Business Hours", value: "24/7 Support Available" },
 ];
 
 export default function ContactInfo() {
   return (
     <section className="bg-gradient-to-br from-slate-50/80 via-white to-orange-50/30 py-14 sm:py-20">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
-        <div className="grid gap-4 sm:gap-5 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="grid gap-4 sm:gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {cards.map((card, index) => {
             const Icon = card.icon;
             return (
@@ -24,7 +25,7 @@ export default function ContactInfo() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.5, ease: "easeOut", delay: index * 0.1 }}
-                whileHover={{ y: -6, borderColor: "#fdba74", boxShadow: "0 16px 40px rgba(249,115,22,0.12)" }}
+                whileHover={{ y: -6, borderColor: "#FF9A7A", boxShadow: "0 16px 40px rgba(255,87,34,0.12)" }}
                 className="rounded-2xl sm:rounded-3xl border border-white/60 bg-white/70 backdrop-blur-md p-6 sm:p-8 shadow-sm"
               >
                 <motion.div

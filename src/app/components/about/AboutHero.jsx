@@ -20,9 +20,9 @@ const statVariants = {
 
 export default function AboutHero() {
   return (
-    <section className="relative min-h-screen overflow-hidden bg-[#1e2428]">
+    <section className="relative min-h-screen overflow-hidden bg-[#121435]">
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#252a2f] via-[#1e2428] to-[#171b1e]" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#242640] via-[#121435] to-[#121435]" />
       <motion.div
         className="absolute -left-20 top-1/4 h-[480px] w-[480px] rounded-full bg-orange-500/15 blur-[120px] pointer-events-none"
         animate={{ scale: [1, 1.2, 1], opacity: [0.4, 0.7, 0.4] }}
@@ -33,12 +33,12 @@ export default function AboutHero() {
         className="absolute inset-0 opacity-[0.04] pointer-events-none"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(255,255,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.07) 1px,transparent 1px)",
+            "linear-gradient(rgba(250,249,240,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(250,249,240,.07) 1px,transparent 1px)",
           backgroundSize: "60px 60px",
         }}
       />
 
-      <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-12 min-h-screen flex items-center pt-20 pb-12 lg:pt-24 lg:pb-16">
+      <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-12 min-h-screen flex flex-col items-center justify-center pt-20 pb-12 lg:pt-24 lg:pb-16">
         <div className="grid w-full items-center gap-12 lg:gap-16 lg:grid-cols-2">
 
           {/* ── Left: Text ── */}
@@ -88,30 +88,6 @@ export default function AboutHero() {
               >
                 Explore Services
               </motion.a>
-            </motion.div>
-
-            {/* Stat Pills */}
-            <motion.div
-              className="mt-10 grid grid-cols-3 gap-3 sm:gap-4"
-              variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1, delayChildren: 0.85 } } }}
-              initial="hidden"
-              animate="visible"
-            >
-              {[
-                { value: "360°", label: "Automation Lifecycle" },
-                { value: "CMSE®", label: "TÜV NORD Certified" },
-                { value: "IIoT", label: "Industry 4.0 Ready" },
-              ].map((stat) => (
-                <motion.div
-                  key={stat.value}
-                  variants={statVariants}
-                  whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.1)" }}
-                  className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md p-4 sm:p-5 text-center cursor-default"
-                >
-                  <div className="text-lg sm:text-2xl lg:text-3xl font-bold text-orange-500">{stat.value}</div>
-                  <div className="mt-1 text-[10px] sm:text-xs text-slate-400 leading-tight">{stat.label}</div>
-                </motion.div>
-              ))}
             </motion.div>
           </motion.div>
 
@@ -203,6 +179,40 @@ export default function AboutHero() {
           </motion.div>
 
         </div>
+
+        {/* ── Highlights — full-width horizontal strip ── */}
+        <motion.div
+          className="w-full mt-12 lg:mt-16"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+        >
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 lg:gap-4">
+            {[
+              "CMSE® TÜV NORD Certified",
+              "IIoT & Industry 4.0 Ready",
+              "Multi-Vendor Automation Expertise",
+              "End-to-End Project Delivery",
+              "Pacific Region Coverage",
+              "24/7 Technical Support",
+            ].map((label, i) => (
+              <motion.div
+                key={label}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.07 }}
+                whileHover={{ scale: 1.05, borderColor: "rgba(255,87,34,0.4)", backgroundColor: "rgba(250,249,240,0.1)" }}
+                className="flex flex-col items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md px-3 py-5 text-center cursor-default"
+              >
+                <span className="h-2 w-2 flex-shrink-0 rounded-full bg-orange-500" />
+                <span className="text-xs sm:text-sm font-semibold text-white leading-tight">{label}</span>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
       </div>
     </section>
   );

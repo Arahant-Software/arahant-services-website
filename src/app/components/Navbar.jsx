@@ -7,16 +7,27 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaLinkedinIn, FaBars, FaTimes, FaChevronDown } from "react-icons/fa";
 
-const spareParts = ["PLC Spare Parts", "Drives & Motors", "Sensors", "HMI Panels"];
-
 const services = [
-  "Industrial Automation",
-  "Process Automation",
-  "Machine Safety",
-  "Electrical Engineering, installation & maintenance",
-  "Mechanical installation & maintenance",
-  "Welding Services",
-  "Project management",
+  {
+    label: "Industrial Process Automation",
+    href: "/services/industrial-process-automation",
+  },
+  {
+    label: "Machine Safety",
+    href: "/services/machine-safety",
+  },
+  {
+    label: "Electrical Engineering, installation & maintenance",
+    href: "/services/electrical-engineering",
+  },
+  {
+    label: "Industrial Engineering services",
+    href: "/services/industrial-engineering",
+  },
+  {
+    label: "Project management",
+    href: "/services/project-management",
+  },
 ];
 
 export default function Navbar() {
@@ -25,7 +36,7 @@ export default function Navbar() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 bg-white/75 backdrop-blur-xl border-b border-white/40 shadow-[0_2px_20px_rgba(0,0,0,0.07)]">
+    <header className="sticky top-0 z-50 bg-white/75 backdrop-blur-xl border-b border-white/40 shadow-[0_2px_20px_rgba(18,20,53,0.07)]">
       <nav className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
         {/* Top Bar */}
         <div className="flex items-center justify-between h-16 sm:h-18">
@@ -38,7 +49,7 @@ export default function Navbar() {
           <ul className="hidden lg:flex items-center gap-8 xl:gap-10 text-sm font-bold text-black">
             <NavLink href="/" label="Home" pathname={pathname} />
             <Dropdown title="Services" items={services} />
-            <Dropdown title="Projects" items={spareParts} />
+            <NavLink href="/projects" label="Projects" pathname={pathname} />
             <NavLink href="/about" label="About" pathname={pathname} />
             <NavLink href="/contact" label="Contact" pathname={pathname} />
           </ul>
@@ -46,10 +57,10 @@ export default function Navbar() {
           {/* Right Side */}
           <div className="flex items-center gap-3">
             <motion.a
-              href="https://www.linkedin.com/company/your-company"
+              href="https://www.linkedin.com/company/arahant-services-ltd/"
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ scale: 1.1, borderColor: "#f26522", color: "#f26522" }}
+              whileHover={{ scale: 1.1, borderColor: "#FF5722", color: "#FF5722" }}
               className="hidden sm:flex rounded-md border border-gray-300 p-2 text-gray-700 transition text-lg"
             >
               <FaLinkedinIn />
@@ -95,15 +106,15 @@ export default function Navbar() {
                 className="flex flex-col gap-1 pt-4 pb-5 text-gray-800 font-medium"
               >
                 <MobileLink href="/" label="Home" setMenuOpen={setMenuOpen} />
-                <MobileDropdown title="Spare Parts" items={spareParts} openDropdown={openDropdown} setOpenDropdown={setOpenDropdown} />
                 <MobileDropdown title="Services" items={services} openDropdown={openDropdown} setOpenDropdown={setOpenDropdown} />
+                <MobileLink href="/projects" label="Projects" setMenuOpen={setMenuOpen} />
                 <MobileLink href="/about" label="About Us" setMenuOpen={setMenuOpen} />
                 <MobileLink href="/contact" label="Contact" setMenuOpen={setMenuOpen} />
               </motion.ul>
 
               <div className="pt-3 pb-5 border-t border-gray-100">
                 <a
-                  href="https://www.linkedin.com/company/your-company"
+                  href="https://www.linkedin.com/company/arahant-services-ltd/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-orange-500 transition px-3 py-2"
@@ -156,21 +167,26 @@ function Dropdown({ title, items }) {
           whileInView={{ y: 0, opacity: 1 }}
           className="w-64 rounded-2xl bg-white/85 backdrop-blur-xl shadow-xl border border-white/50 overflow-hidden"
         >
-          {items.map((item, i) => (
-            <motion.div
-              key={item}
-              initial={{ opacity: 0, x: -10 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ delay: i * 0.04 }}
-            >
-              <Link
-                href="#"
-                className="block px-5 py-3 text-sm hover:bg-orange-50 text-gray-600 hover:text-orange-500 transition"
+          {items.map((item, i) => {
+            const isObj = typeof item === "object";
+            const label = isObj ? item.label : item;
+            const href = isObj && item.href ? item.href : "#";
+            return (
+              <motion.div
+                key={label}
+                initial={{ opacity: 0, x: -10 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ delay: i * 0.04 }}
               >
-                {item}
-              </Link>
-            </motion.div>
-          ))}
+                <Link
+                  href={href}
+                  className="block px-5 py-3 text-sm hover:bg-orange-50 text-gray-600 hover:text-orange-500 transition"
+                >
+                  {label}
+                </Link>
+              </motion.div>
+            );
+          })}
         </motion.div>
       </div>
     </li>
@@ -227,15 +243,20 @@ function MobileDropdown({ title, items, openDropdown, setOpenDropdown }) {
             className="overflow-hidden"
           >
             <div className="ml-4 mt-1 border-l-2 border-orange-200 pl-4 pb-1">
-              {items.map((item) => (
-                <Link
-                  key={item}
-                  href="#"
-                  className="block py-2 text-xs sm:text-sm text-gray-600 hover:text-orange-500 transition"
-                >
-                  {item}
-                </Link>
-              ))}
+              {items.map((item) => {
+                const isObj = typeof item === "object";
+                const label = isObj ? item.label : item;
+                const href = isObj && item.href ? item.href : "#";
+                return (
+                  <Link
+                    key={label}
+                    href={href}
+                    className="block py-2 text-xs sm:text-sm text-gray-600 hover:text-orange-500 transition"
+                  >
+                    {label}
+                  </Link>
+                );
+              })}
             </div>
           </motion.div>
         )}

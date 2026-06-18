@@ -15,7 +15,7 @@ const points = [
 
 export default function WhyChooseArahant() {
   return (
-    <section className="bg-[#1e2428] py-20 lg:py-28">
+    <section className="bg-[#121435] py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
         <div className="grid items-center gap-10 lg:gap-16 lg:grid-cols-2">
           {/* Image */}
@@ -53,7 +53,7 @@ export default function WhyChooseArahant() {
                     className="mt-2 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-orange-500"
                   />
                   <motion.span
-                    whileHover={{ x: 4, color: "#fb923c" }}
+                    whileHover={{ x: 4, color: "#FF794E" }}
                     transition={{ duration: 0.2 }}
                     className="text-base sm:text-lg text-slate-300 cursor-default"
                   >

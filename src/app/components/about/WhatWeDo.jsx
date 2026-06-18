@@ -50,8 +50,8 @@ const services = [
 
 export default function WhatWeDo() {
   return (
-    <section className="relative overflow-hidden bg-[#050505] py-28">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(249,115,22,0.15),transparent_40%)]" />
+    <section className="relative overflow-hidden bg-[#121435] py-28">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,87,34,0.15),transparent_40%)]" />
 
       <div className="relative z-10 mx-auto max-w-[1500px] px-6 md:px-10 lg:px-20">
         <div className="text-center">

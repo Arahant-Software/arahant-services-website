@@ -21,7 +21,7 @@ const technologyPartners = [
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-[#1e2428] text-white">
+    <footer className="relative overflow-hidden bg-[#121435] text-white">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute -left-32 top-0 h-[300px] w-[300px] rounded-full bg-orange-600/10 blur-3xl" />
         <div className="absolute -right-32 bottom-0 h-[300px] w-[300px] rounded-full bg-orange-600/10 blur-3xl" />
@@ -65,7 +65,7 @@ export default function Footer() {
               <ul className="space-y-3 text-slate-400">
                 {services.map((s) => (
                   <li key={s.label}>
-                    <motion.div whileHover={{ x: 4, color: "#f97316" }} transition={{ duration: 0.2 }}>
+                    <motion.div whileHover={{ x: 4, color: "#FF5722" }} transition={{ duration: 0.2 }}>
                       <Link href={s.href} className="text-sm sm:text-base transition hover:text-orange-500">
                         {s.label}
                       </Link>
@@ -84,7 +84,7 @@ export default function Footer() {
                 {technologyPartners.map((p) => (
                   <motion.span
                     key={p}
-                    whileHover={{ color: "#f97316", x: 3 }}
+                    whileHover={{ color: "#FF5722", x: 3 }}
                     transition={{ duration: 0.2 }}
                     className="cursor-default"
                   >
@@ -103,7 +103,7 @@ export default function Footer() {
                 <p className="text-sm sm:text-base font-medium text-white">New Zealand & Pacific Region</p>
                 <motion.a
                   href="mailto:support@arahant.co.nz"
-                  whileHover={{ color: "#f97316", x: 3 }}
+                  whileHover={{ color: "#FF5722", x: 3 }}
                   transition={{ duration: 0.2 }}
                   className="block text-sm sm:text-base transition"
                 >
@@ -111,7 +111,7 @@ export default function Footer() {
                 </motion.a>
                 <motion.a
                   href="https://www.arahant.co.nz"
-                  whileHover={{ color: "#f97316", x: 3 }}
+                  whileHover={{ color: "#FF5722", x: 3 }}
                   transition={{ duration: 0.2 }}
                   className="block text-sm sm:text-base transition"
                 >
@@ -142,7 +142,7 @@ export default function Footer() {
                 { label: "Terms & Conditions", href: "/terms" },
                 { label: "Contact", href: "/contact" },
               ].map((link) => (
-                <motion.div key={link.label} whileHover={{ color: "#f97316" }} transition={{ duration: 0.2 }}>
+                <motion.div key={link.label} whileHover={{ color: "#FF5722" }} transition={{ duration: 0.2 }}>
                   <Link href={link.href} className="hover:text-orange-500 transition">
                     {link.label}
                   </Link>

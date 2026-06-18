@@ -15,7 +15,7 @@ const items = [
 
 export default function WhatMakesUsDifferent() {
   return (
-    <section className="bg-[#1e2428] py-20 lg:py-28">
+    <section className="bg-[#121435] py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
         <FadeUp>
           <div className="text-center">
@@ -32,7 +32,7 @@ export default function WhatMakesUsDifferent() {
             return (
               <StaggerChild key={item.title}>
                 <motion.div
-                  whileHover={{ scale: 1.03, borderColor: "rgba(249,115,22,0.4)", backgroundColor: "rgba(255,255,255,0.07)" }}
+                  whileHover={{ scale: 1.03, borderColor: "rgba(255,87,34,0.4)", backgroundColor: "rgba(250,249,240,0.07)" }}
                   transition={{ duration: 0.25 }}
                   className="rounded-3xl border border-white/12 bg-white/8 backdrop-blur-md p-6 sm:p-8 h-full"
                 >

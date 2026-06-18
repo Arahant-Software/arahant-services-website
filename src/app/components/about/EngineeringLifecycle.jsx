@@ -29,7 +29,7 @@ export default function EngineeringLifecycle() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, ease: "easeOut", delay: index * 0.08 }}
-              whileHover={{ y: -8, borderColor: "#fdba74", boxShadow: "0 16px 40px rgba(249,115,22,0.15)" }}
+              whileHover={{ y: -8, borderColor: "#FF9A7A", boxShadow: "0 16px 40px rgba(255,87,34,0.15)" }}
               className="rounded-2xl sm:rounded-3xl border border-white/60 bg-white/70 backdrop-blur-md p-5 sm:p-8 text-center shadow-sm cursor-default"
             >
               <motion.div

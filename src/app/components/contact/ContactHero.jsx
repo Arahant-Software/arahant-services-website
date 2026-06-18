@@ -14,8 +14,8 @@ const itemVariants = {
 
 export default function ContactHero() {
   return (
-    <section className="relative min-h-[55vh] bg-[#1e2428] overflow-hidden">
-      <div className="absolute inset-0 bg-[#1e2428]/60 pointer-events-none" />
+    <section className="relative min-h-[55vh] bg-[#121435] overflow-hidden">
+      <div className="absolute inset-0 bg-[#121435]/60 pointer-events-none" />
       <motion.div
         className="absolute right-0 top-0 h-[400px] w-[400px] rounded-full bg-orange-500/15 blur-3xl pointer-events-none"
         animate={{ scale: [1, 1.2, 1], opacity: [0.4, 0.8, 0.4] }}

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { Cpu, Factory, Zap, Wrench, ShieldCheck, Package, ArrowUpRight } from "lucide-react";
 import { FadeUp } from "../ui/Motion";
@@ -10,12 +11,14 @@ const capabilities = [
     icon: Cpu,
     title: "Industrial Automation",
     services: ["PLC", "HMI", "SCADA", "Robotics", "Motion Control"],
+    href: "/services/industrial-process-automation",
   },
   {
     number: "02",
     icon: Factory,
     title: "Process Automation",
     services: ["DCS", "Batch Control", "Data Acquisition", "Industry 4.0"],
+    href: "/services/industrial-process-automation",
   },
   {
     number: "03",
@@ -28,6 +31,7 @@ const capabilities = [
     icon: Wrench,
     title: "Mechanical Installation",
     services: ["Conveyors", "Hydraulics", "Pneumatics", "Process Equipment"],
+    href: "/services/industrial-engineering",
   },
   {
     number: "05",
@@ -71,6 +75,8 @@ export default function CoreCapabilities() {
         <div className="mt-8 lg:mt-10">
           {capabilities.map((cap, index) => {
             const Icon = cap.icon;
+            const RowWrapper = cap.href ? Link : "div";
+            const rowWrapperProps = cap.href ? { href: cap.href } : {};
             return (
               <motion.div
                 key={cap.title}
@@ -78,9 +84,10 @@ export default function CoreCapabilities() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.45, ease: "easeOut", delay: index * 0.07 }}
-                whileHover={{ backgroundColor: "#fff7ed" }}
-                className="group -mx-4 rounded-2xl px-4 transition-colors duration-200 cursor-default border-b border-slate-100 last:border-b-0"
+                whileHover={{ backgroundColor: "#FFEEE9" }}
+                className={`group -mx-4 rounded-2xl px-4 transition-colors duration-200 border-b border-slate-100 last:border-b-0 ${cap.href ? "cursor-pointer" : "cursor-default"}`}
               >
+              <RowWrapper {...rowWrapperProps} className="block">
                 {/* Desktop row */}
                 <div className="hidden sm:flex items-center gap-5 py-5 lg:py-6">
                   {/* Number */}
@@ -102,11 +109,11 @@ export default function CoreCapabilities() {
                   <div className="hidden lg:block h-1 w-1 flex-shrink-0 rounded-full bg-orange-400" />
 
                   {/* Tags */}
-                  <div className="flex flex-1 flex-wrap gap-2">
+                  <div className="grid flex-1 grid-cols-5 gap-2">
                     {cap.services.map((tag) => (
                       <span
                         key={tag}
-                        className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium text-slate-600 group-hover:border-orange-200 group-hover:bg-orange-50 group-hover:text-orange-700 transition-colors duration-200"
+                        className="justify-self-start whitespace-nowrap rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium text-slate-600 group-hover:border-orange-200 group-hover:bg-orange-50 group-hover:text-orange-700 transition-colors duration-200"
                       >
                         {tag}
                       </span>
@@ -150,6 +157,7 @@ export default function CoreCapabilities() {
                     ))}
                   </div>
                 </div>
+              </RowWrapper>
               </motion.div>
             );
           })}

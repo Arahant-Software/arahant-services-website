@@ -31,7 +31,7 @@ export default function DcsOfferings() {
         <div className="absolute -left-40 top-0 h-[500px] w-[500px] rounded-full bg-orange-200/30 blur-3xl" />
         <div className="absolute -right-40 bottom-0 h-[500px] w-[500px] rounded-full bg-orange-100/40 blur-3xl" />
         <div className="absolute inset-0 opacity-[0.03]">
-          <div className="h-full w-full bg-[linear-gradient(to_right,#000_1px,transparent_1px),linear-gradient(to_bottom,#000_1px,transparent_1px)] bg-[size:60px_60px]" />
+          <div className="h-full w-full bg-[linear-gradient(to_right,#121435_1px,transparent_1px),linear-gradient(to_bottom,#121435_1px,transparent_1px)] bg-[size:60px_60px]" />
         </div>
       </div>
 
@@ -60,9 +60,9 @@ export default function DcsOfferings() {
           {offerings.map((item, index) => (
             <StaggerChild key={index}>
               <motion.div
-                whileHover={{ y: -8, boxShadow: "0 25px 80px rgba(249,115,22,0.18)" }}
+                whileHover={{ y: -8, boxShadow: "0 25px 80px rgba(255,87,34,0.18)" }}
                 transition={{ duration: 0.3 }}
-                className="group relative overflow-hidden rounded-3xl border border-white/60 bg-white/70 backdrop-blur-md shadow-[0_10px_40px_rgba(0,0,0,0.06)] h-full"
+                className="group relative overflow-hidden rounded-3xl border border-white/60 bg-white/70 backdrop-blur-md shadow-[0_10px_40px_rgba(18,20,53,0.06)] h-full"
               >
                 {/* Hover Glow */}
                 <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-orange-100 opacity-0 blur-3xl transition-all duration-500 group-hover:opacity-100 pointer-events-none" />
@@ -102,7 +102,7 @@ export default function DcsOfferings() {
 
         {/* Stats */}
         <FadeUp delay={0.1}>
-          <div className="mt-16 lg:mt-24 overflow-hidden rounded-3xl border border-white/50 bg-white/60 backdrop-blur-md p-8 sm:p-12 shadow-[0_20px_60px_rgba(249,115,22,0.08)]">
+          <div className="mt-16 lg:mt-24 overflow-hidden rounded-3xl border border-white/50 bg-white/60 backdrop-blur-md p-8 sm:p-12 shadow-[0_20px_60px_rgba(255,87,34,0.08)]">
             <div className="grid grid-cols-2 gap-8 lg:grid-cols-4">
               {stats.map((s) => (
                 <div key={s.label} className="text-center">

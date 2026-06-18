@@ -1,45 +1,27 @@
 "use client";
 
-import Image from "next/image";
-import { motion } from "framer-motion";
-import { FadeUp, FadeLeft, FadeRight, StaggerContainer, StaggerChild, Counter } from "./ui/Motion";
+import { FadeUp, Counter } from "./ui/Motion";
 
 const partners = [
-  { name: "Siemens", logo: "/partners/siemens.webp" },
-  { name: "Rockwell Automation", logo: "/partners/Rockwell.svg" },
-  { name: "Schneider Electric", logo: "/partners/Schneider_Electric.svg" },
-  { name: "ABB", logo: "/partners/abb.svg" },
-  { name: "Omron", logo: "/partners/Omron.svg" },
-  { name: "Mitsubishi Electric", logo: "/partners/mistubishi.png" },
-  { name: "SICK", logo: "/partners/sick.jpg" },
-  { name: "Festo", logo: "/partners/festo.svg" },
-  { name: "Phoenix Contact", logo: "/partners/phoenix.svg" },
-  { name: "WAGO", logo: "/partners/wago.png" },
-  { name: "SMC", logo: "/partners/smc.png" },
-  { name: "Balluff", logo: "/partners/Balluff.webp" },
-  { name: "Burkert", logo: "/partners/buerkert.svg" },
+  "Siemens",
+  "Rockwell Automation",
+  "Schneider Electric",
+  "ABB",
+  "Omron",
+  "Mitsubishi Electric",
+  "SICK",
+  "Festo",
+  "Phoenix Contact",
+  "WAGO",
+  "SMC",
+  "Balluff",
+  "Burkert",
 ];
 
-const capabilityCards = [
-  {
-    tag: "PLC",
-    title: "Automation Platforms",
-    description:
-      "Siemens, Rockwell, Omron and Mitsubishi control systems for machine automation, process plants and industrial production.",
-  },
-  {
-    tag: "IIoT",
-    title: "Industry 4.0",
-    description:
-      "Industrial connectivity, data acquisition, cloud integration, analytics and digital transformation solutions.",
-  },
-  {
-    tag: "OEM",
-    title: "Genuine Components",
-    description:
-      "Authorised sourcing of genuine manufacturer-supported automation, instrumentation, drives and industrial control products.",
-  },
-];
+/* Duplicate for seamless loop */
+const row1 = [...partners, ...partners];
+const row2 = [...partners].reverse();
+const row2Loop = [...row2, ...row2];
 
 export default function TechnologyPartners() {
   return (
@@ -49,7 +31,7 @@ export default function TechnologyPartners() {
         <div className="absolute -left-32 top-0 h-[500px] w-[500px] rounded-full bg-orange-100/50 blur-3xl" />
         <div className="absolute -right-32 bottom-0 h-[500px] w-[500px] rounded-full bg-orange-50 blur-3xl" />
         <div className="absolute inset-0 opacity-[0.03]">
-          <div className="h-full w-full bg-[linear-gradient(to_right,#000_1px,transparent_1px),linear-gradient(to_bottom,#000_1px,transparent_1px)] bg-[size:60px_60px]" />
+          <div className="h-full w-full bg-[linear-gradient(to_right,#121435_1px,transparent_1px),linear-gradient(to_bottom,#121435_1px,transparent_1px)] bg-[size:60px_60px]" />
         </div>
       </div>
 
@@ -76,7 +58,7 @@ export default function TechnologyPartners() {
 
         {/* Banner */}
         <FadeUp delay={0.1}>
-          <div className="mt-12 lg:mt-20 overflow-hidden rounded-3xl border border-white/50 bg-white/60 backdrop-blur-md p-6 sm:p-10 shadow-[0_10px_40px_rgba(249,115,22,0.08)]">
+          <div className="mt-12 lg:mt-20 overflow-hidden rounded-3xl border border-white/50 bg-white/60 backdrop-blur-md p-6 sm:p-10 shadow-[0_10px_40px_rgba(255,87,34,0.08)]">
             <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
               <div className="text-center lg:text-left flex-shrink-0">
                 <div className="text-5xl sm:text-6xl font-bold text-orange-600">
@@ -93,54 +75,38 @@ export default function TechnologyPartners() {
           </div>
         </FadeUp>
 
-        {/* ── Logo Grid ── */}
+        {/* ── Partner Carousel ── */}
         <FadeUp delay={0.15}>
-          <div className="mt-12 lg:mt-20 rounded-3xl border border-white/50 bg-white/60 backdrop-blur-md p-6 sm:p-8 shadow-[0_15px_50px_rgba(249,115,22,0.07)]">
-            <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-5">
-              {partners.map((partner, i) => (
-                <motion.div
-                  key={partner.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-60px" }}
-                  transition={{ duration: 0.4, delay: i * 0.05 }}
-                  whileHover={{
-                    y: -6,
-                    scale: 1.06,
-                    borderColor: "#fb923c",
-                    boxShadow: "0 12px 32px rgba(249,115,22,0.18)",
-                  }}
-                  className="flex items-center justify-center rounded-2xl border border-white/50 bg-white/70 backdrop-blur-sm p-4 sm:p-5 h-[80px] sm:h-[95px] cursor-pointer"
-                >
-                  <Image
-                    src={partner.logo}
-                    alt={partner.name}
-                    width={120}
-                    height={50}
-                    className="h-[35px] sm:h-[45px] w-auto max-w-[90px] sm:max-w-[110px] object-contain"
-                  />
-                </motion.div>
-              ))}
+          <div className="mt-12 lg:mt-20 space-y-4 sm:space-y-5 overflow-hidden rounded-3xl border border-white/50 bg-white/60 backdrop-blur-md py-8 sm:py-10 shadow-[0_15px_50px_rgba(255,87,34,0.07)]">
+            {/* Row 1 */}
+            <div className="overflow-hidden marquee-fade">
+              <div className="flex animate-marquee gap-4 w-max">
+                {row1.map((name, i) => (
+                  <span
+                    key={`r1-${name}-${i}`}
+                    className="flex-shrink-0 whitespace-nowrap rounded-full border border-orange-200 bg-white px-6 py-3 text-sm sm:text-base font-semibold text-slate-700 shadow-sm"
+                  >
+                    {name}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Row 2 — opposite direction */}
+            <div className="overflow-hidden marquee-fade">
+              <div className="flex animate-marquee-reverse gap-4 w-max">
+                {row2Loop.map((name, i) => (
+                  <span
+                    key={`r2-${name}-${i}`}
+                    className="flex-shrink-0 whitespace-nowrap rounded-full border border-orange-200 bg-orange-50 px-6 py-3 text-sm sm:text-base font-semibold text-orange-700 shadow-sm"
+                  >
+                    {name}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
         </FadeUp>
-
-        {/* Capability Cards */}
-        <StaggerContainer stagger={0.12} delay={0.05} className="mt-10 lg:mt-16 grid gap-5 sm:grid-cols-3">
-          {capabilityCards.map((card) => (
-            <StaggerChild key={card.title}>
-              <motion.div
-                whileHover={{ y: -6, borderColor: "#fdba74" }}
-                transition={{ duration: 0.25 }}
-                className="rounded-3xl border border-white/60 bg-white/70 backdrop-blur-md p-6 sm:p-8 shadow-[0_10px_30px_rgba(249,115,22,0.06)]"
-              >
-                <div className="text-4xl sm:text-5xl font-bold text-orange-600">{card.tag}</div>
-                <h4 className="mt-4 text-lg sm:text-xl font-bold text-slate-900">{card.title}</h4>
-                <p className="mt-3 text-sm sm:text-base text-slate-600 leading-7">{card.description}</p>
-              </motion.div>
-            </StaggerChild>
-          ))}
-        </StaggerContainer>
       </div>
     </section>
   );

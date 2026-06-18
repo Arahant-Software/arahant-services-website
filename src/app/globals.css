@@ -4,15 +4,45 @@
    Brand Theme Variables
 ================================ */
 :root {
-  /* Brand Colors */
-  --brand-orange: #f26522;
-  --brand-black: #0b0b0b;
-  --brand-dark: #1f1f1f;
-  --brand-light: #f5f5f5;
+  /* ── Brand Palette — only these 4 colors are used sitewide ── */
+  --brand-navy: #121435;
+  --brand-cream: #faf9f0;
+  --brand-khaki: #edebca;
+  --brand-orange: #ff5722;
+
+  --brand-black: var(--brand-navy);
+  --brand-dark: #1a1c3a;
+  --brand-light: var(--brand-cream);
+
+  /* Orange ramp — derived from #FF5722 */
+  --brand-orange-50: #ffeee9;
+  --brand-orange-100: #ffddd3;
+  --brand-orange-200: #ffbca7;
+  --brand-orange-300: #ff9a7a;
+  --brand-orange-400: #ff794e;
+  --brand-orange-500: #ff5722;
+  --brand-orange-600: #d94a1d;
+  --brand-orange-700: #b33d18;
+  --brand-orange-800: #8c3013;
+  --brand-orange-900: #66230e;
+  --brand-orange-950: #401609;
+
+  /* Neutral ramp — light end anchored to cream/khaki, dark end to navy */
+  --brand-neutral-50: #faf9f0;
+  --brand-neutral-100: #edebca;
+  --brand-neutral-200: #d8d5b0;
+  --brand-neutral-300: #b8b59a;
+  --brand-neutral-400: #8e8c82;
+  --brand-neutral-500: #6b6a6e;
+  --brand-neutral-600: #4f4f5a;
+  --brand-neutral-700: #383a4d;
+  --brand-neutral-800: #242640;
+  --brand-neutral-900: #1a1c3a;
+  --brand-neutral-950: #121435;
 
   /* App Theme */
-  --background: #ffffff;
-  --foreground: #0b0b0b;
+  --background: var(--brand-cream);
+  --foreground: var(--brand-navy);
 }
 
 /* Tailwind Theme Mapping */
@@ -24,6 +54,49 @@
   --color-brand-black: var(--brand-black);
   --color-brand-dark: var(--brand-dark);
   --color-brand-light: var(--brand-light);
+  --color-brand-navy: var(--brand-navy);
+  --color-brand-cream: var(--brand-cream);
+  --color-brand-khaki: var(--brand-khaki);
+
+  /* Override Tailwind's white/black + orange/slate palettes sitewide */
+  --color-white: var(--brand-cream);
+  --color-black: var(--brand-navy);
+
+  --color-orange-50: var(--brand-orange-50);
+  --color-orange-100: var(--brand-orange-100);
+  --color-orange-200: var(--brand-orange-200);
+  --color-orange-300: var(--brand-orange-300);
+  --color-orange-400: var(--brand-orange-400);
+  --color-orange-500: var(--brand-orange-500);
+  --color-orange-600: var(--brand-orange-600);
+  --color-orange-700: var(--brand-orange-700);
+  --color-orange-800: var(--brand-orange-800);
+  --color-orange-900: var(--brand-orange-900);
+  --color-orange-950: var(--brand-orange-950);
+
+  --color-slate-50: var(--brand-neutral-50);
+  --color-slate-100: var(--brand-neutral-100);
+  --color-slate-200: var(--brand-neutral-200);
+  --color-slate-300: var(--brand-neutral-300);
+  --color-slate-400: var(--brand-neutral-400);
+  --color-slate-500: var(--brand-neutral-500);
+  --color-slate-600: var(--brand-neutral-600);
+  --color-slate-700: var(--brand-neutral-700);
+  --color-slate-800: var(--brand-neutral-800);
+  --color-slate-900: var(--brand-neutral-900);
+  --color-slate-950: var(--brand-neutral-950);
+
+  --color-gray-50: var(--brand-neutral-50);
+  --color-gray-100: var(--brand-neutral-100);
+  --color-gray-200: var(--brand-neutral-200);
+  --color-gray-300: var(--brand-neutral-300);
+  --color-gray-400: var(--brand-neutral-400);
+  --color-gray-500: var(--brand-neutral-500);
+  --color-gray-600: var(--brand-neutral-600);
+  --color-gray-700: var(--brand-neutral-700);
+  --color-gray-800: var(--brand-neutral-800);
+  --color-gray-900: var(--brand-neutral-900);
+  --color-gray-950: var(--brand-neutral-950);
 
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
@@ -32,8 +105,8 @@
 /* Dark Mode */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: var(--brand-black);
-    --foreground: #ededed;
+    --background: var(--brand-navy);
+    --foreground: var(--brand-cream);
   }
 }
 
@@ -115,6 +188,15 @@ body {
 }
 
 .animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+.animate-marquee-reverse {
+  animation: marquee 28s linear infinite reverse;
+  will-change: transform;
+}
+
+.animate-marquee-reverse:hover {
   animation-play-state: paused;
 }
 

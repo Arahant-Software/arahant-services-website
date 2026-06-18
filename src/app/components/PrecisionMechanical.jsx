@@ -23,8 +23,8 @@ const weldingCards = [
 
 export default function PrecisionMechanical() {
   return (
-    <section className="relative overflow-hidden bg-[#1e2428] py-20 lg:py-32">
-      <div className="absolute right-0 top-0 h-full w-1/2 bg-[radial-gradient(circle_at_center,rgba(255,102,0,0.12),transparent_70%)] pointer-events-none" />
+    <section className="relative overflow-hidden bg-[#121435] py-20 lg:py-32">
+      <div className="absolute right-0 top-0 h-full w-1/2 bg-[radial-gradient(circle_at_center,rgba(255,87,34,0.12),transparent_70%)] pointer-events-none" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
         {/* Header */}
@@ -130,7 +130,7 @@ export default function PrecisionMechanical() {
               {weldingCards.map((item) => (
                 <StaggerChild key={item}>
                   <motion.div
-                    whileHover={{ scale: 1.03, borderColor: "rgba(249,115,22,0.4)" }}
+                    whileHover={{ scale: 1.03, borderColor: "rgba(255,87,34,0.4)" }}
                     transition={{ duration: 0.25 }}
                     className="rounded-2xl border border-white/10 bg-white/6 backdrop-blur-sm p-5 text-center"
                   >

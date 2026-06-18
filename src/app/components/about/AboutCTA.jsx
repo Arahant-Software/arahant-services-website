@@ -5,9 +5,9 @@ import { ScaleUp } from "../ui/Motion";
 
 export default function AboutCTA() {
   return (
-    <section className="relative overflow-hidden bg-[#1e2428] py-20 lg:py-28">
+    <section className="relative overflow-hidden bg-[#121435] py-20 lg:py-28">
       <motion.div
-        className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(249,115,22,0.2),transparent_50%)] pointer-events-none"
+        className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,87,34,0.2),transparent_50%)] pointer-events-none"
         animate={{ scale: [1, 1.1, 1], opacity: [0.6, 1, 0.6] }}
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
       />

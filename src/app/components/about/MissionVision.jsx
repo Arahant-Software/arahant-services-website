@@ -21,7 +21,7 @@ export default function MissionVision() {
             </p>
           </div>
 
-          <div className="rounded-[36px] bg-[#111111] p-12 text-white">
+          <div className="rounded-[36px] bg-[#121435] p-12 text-white">
             <span className="text-sm font-semibold uppercase tracking-[0.25em] text-orange-400">
               OUR VISION
             </span>
