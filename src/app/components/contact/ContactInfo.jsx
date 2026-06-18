@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Clock, Clock3 } from "lucide-react";
 
 const cards = [
-  { icon: Phone, title: "Call Us", value: "+64 XX XXX XXXX" },
+  { icon: Phone, title: "Call Us", value: "+64 9 600 9070" },
   { icon: Mail, title: "Email", value: "info@arahant.co.nz" },
-  { icon: MapPin, title: "Location", value: "New Zealand" },
+  { icon: MapPin, title: "Location", value: "515 Ararimu Road, Ramarama, Auckland 2579" },
   { icon: Clock, title: "Working Hours", value: "Mon – Fri | 8:00 AM – 5:00 PM" },
   { icon: Clock3, title: "Business Hours", value: "24/7 Support Available" },
 ];
