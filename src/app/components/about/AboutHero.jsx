@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { MagneticButton } from "../ui/Motion";
 
 const containerVariants = {
   hidden: {},
@@ -23,6 +24,13 @@ export default function AboutHero() {
     <section className="relative min-h-screen overflow-hidden bg-[#121435]">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#242640] via-[#121435] to-[#121435]" />
+
+      {/* Automation background image — subtle, blended into navy */}
+      <div className="absolute inset-0 opacity-40">
+        <Image src="/banner/carousel6.jpg" alt="" fill className="object-cover grayscale" />
+      </div>
+      <div className="absolute inset-0 bg-gradient-to-br from-[#121435] via-[#121435]/55 to-[#121435]/85" />
+
       <motion.div
         className="absolute -left-20 top-1/4 h-[480px] w-[480px] rounded-full bg-orange-500/15 blur-[120px] pointer-events-none"
         animate={{ scale: [1, 1.2, 1], opacity: [0.4, 0.7, 0.4] }}
@@ -72,14 +80,16 @@ export default function AboutHero() {
             </motion.p>
 
             <motion.div variants={item} className="mt-8 flex flex-wrap gap-4">
-              <motion.a
-                href="/contact"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.97 }}
-                className="inline-block rounded-full bg-orange-500 px-7 py-3.5 text-sm sm:text-base font-semibold text-white transition hover:bg-orange-600"
-              >
-                Discuss Your Project
-              </motion.a>
+              <MagneticButton strength={12}>
+                <motion.a
+                  href="/contact"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.97 }}
+                  className="inline-block rounded-full bg-orange-500 px-7 py-3.5 text-sm sm:text-base font-semibold text-white transition hover:bg-orange-600"
+                >
+                  Discuss Your Project
+                </motion.a>
+              </MagneticButton>
               <motion.a
                 href="/services"
                 whileHover={{ scale: 1.05 }}

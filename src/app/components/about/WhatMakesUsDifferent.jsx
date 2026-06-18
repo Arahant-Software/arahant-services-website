@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ShieldCheck, Cpu, Wrench, Network, Users, Building2 } from "lucide-react";
 import { FadeUp, StaggerContainer, StaggerChild } from "../ui/Motion";
@@ -15,8 +16,14 @@ const items = [
 
 export default function WhatMakesUsDifferent() {
   return (
-    <section className="bg-[#121435] py-20 lg:py-28">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+    <section className="relative overflow-hidden bg-[#121435] py-20 lg:py-28">
+      {/* Automation background image — subtle, blended into navy */}
+      <div className="absolute inset-0 opacity-40">
+        <Image src="/services/IIOT.jpg" alt="" fill className="object-cover grayscale" />
+      </div>
+      <div className="absolute inset-0 bg-gradient-to-br from-[#121435] via-[#121435]/55 to-[#121435]/85" />
+
+      <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
         <FadeUp>
           <div className="text-center">
             <h2 className="text-3xl font-bold text-white sm:text-4xl lg:text-5xl">

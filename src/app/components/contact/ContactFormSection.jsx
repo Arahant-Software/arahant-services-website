@@ -12,8 +12,8 @@ export default function ContactFormSection() {
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
         <div className="grid gap-8 lg:gap-10 lg:grid-cols-[1.1fr_0.9fr]">
           {/* Form */}
-          <FadeLeft>
-            <div className="rounded-3xl bg-white/70 backdrop-blur-md border border-white/60 p-6 sm:p-10 shadow-sm">
+          <FadeLeft className="h-full">
+            <div className="h-full rounded-3xl bg-white/70 backdrop-blur-md border border-white/60 p-6 sm:p-10 shadow-sm">
               <h2 className="text-2xl sm:text-3xl font-bold text-slate-900">
                 Send Us An Enquiry
               </h2>
@@ -86,12 +86,12 @@ export default function ContactFormSection() {
           </FadeLeft>
 
           {/* Map */}
-          <FadeRight delay={0.1}>
-            <div className="overflow-hidden rounded-3xl bg-white/70 backdrop-blur-md border border-white/60 shadow-sm min-h-[400px] lg:min-h-0">
+          <FadeRight delay={0.1} className="h-full">
+            <div className="h-full min-h-[400px] overflow-hidden rounded-3xl bg-white/70 backdrop-blur-md border border-white/60 shadow-sm">
               <iframe
                 title="Google Map"
                 src="https://maps.google.com/maps?q=515+Ararimu+Road,+Ramarama,+Auckland+2579&t=&z=14&ie=UTF8&iwloc=&output=embed"
-                className="h-full w-full min-h-[400px]"
+                className="h-full w-full"
                 loading="lazy"
               />
             </div>

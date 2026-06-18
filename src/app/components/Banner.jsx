@@ -1,7 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight, Settings, Wrench } from "lucide-react";
+import { MagneticButton } from "./ui/Motion";
 
 const contentVariants = {
   hidden: {},
@@ -31,6 +33,18 @@ export default function Banner() {
     <section className="relative min-h-screen overflow-hidden bg-[#121435]">
       {/* Background Gradient */}
       <div className="absolute inset-0 bg-gradient-to-r from-[#1A1C3A] via-[#121435] to-[#1A1C3A]" />
+
+      {/* Automation background image — subtle, blended into navy */}
+      <div className="absolute inset-0 opacity-40">
+        <Image
+          src="/services/Robotics.jpg"
+          alt=""
+          fill
+          priority
+          className="object-cover grayscale"
+        />
+      </div>
+      <div className="absolute inset-0 bg-gradient-to-r from-[#121435] via-[#121435]/55 to-[#121435]/85" />
 
       {/* Grid Overlay */}
       <div
@@ -110,14 +124,16 @@ export default function Banner() {
             </motion.p>
 
             <motion.div variants={item} className="flex flex-wrap gap-4 mt-8">
-              <motion.a
-                href="/contact"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.97 }}
-                className="inline-block bg-[#FF5722] hover:bg-[#FF794E] transition px-7 py-3.5 rounded-full text-white font-semibold text-sm sm:text-base"
-              >
-                Talk to Us
-              </motion.a>
+              <MagneticButton strength={12}>
+                <motion.a
+                  href="/contact"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.97 }}
+                  className="inline-block bg-[#FF5722] hover:bg-[#FF794E] transition px-7 py-3.5 rounded-full text-white font-semibold text-sm sm:text-base"
+                >
+                  Talk to Us
+                </motion.a>
+              </MagneticButton>
 
               <motion.a
                 href="/about"

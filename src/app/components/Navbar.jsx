@@ -97,7 +97,7 @@ export default function Navbar() {
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="lg:hidden overflow-hidden border-t border-white/30 bg-white/90 backdrop-blur-xl"
+              className="lg:hidden overflow-hidden border-t border-white/40 bg-white/75 backdrop-blur-xl"
             >
               <motion.ul
                 initial="hidden"
@@ -165,7 +165,7 @@ function Dropdown({ title, items }) {
         <motion.div
           initial={{ y: 10, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
-          className="w-64 rounded-2xl bg-white/85 backdrop-blur-xl shadow-xl border border-white/50 overflow-hidden"
+          className="w-64 rounded-2xl bg-white/75 backdrop-blur-xl shadow-xl border border-white/40 overflow-hidden"
         >
           {items.map((item, i) => {
             const isObj = typeof item === "object";

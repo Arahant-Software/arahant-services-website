@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Cpu, ShieldCheck, Zap, Wrench, Flame, ClipboardList, Package } from "lucide-react";
 import { FadeUp, StaggerContainer, StaggerChild, Counter } from "./ui/Motion";
@@ -36,6 +37,12 @@ const capabilities = [
 export default function CoreCapabilities() {
   return (
     <section className="relative overflow-hidden bg-[#121435] py-20 lg:py-32">
+      {/* Automation background image — subtle, blended into navy */}
+      <div className="absolute inset-0 opacity-40">
+        <Image src="/banner/carousel2.jpg" alt="" fill className="object-cover grayscale" />
+      </div>
+      <div className="absolute inset-0 bg-gradient-to-br from-[#121435] via-[#121435]/55 to-[#121435]/85" />
+
       <div className="absolute right-0 top-0 h-full w-1/2 bg-[radial-gradient(circle_at_center,rgba(255,87,34,0.12),transparent_70%)] pointer-events-none" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">

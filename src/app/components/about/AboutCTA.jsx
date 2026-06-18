@@ -1,11 +1,18 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ScaleUp } from "../ui/Motion";
 
 export default function AboutCTA() {
   return (
     <section className="relative overflow-hidden bg-[#121435] py-20 lg:py-28">
+      {/* Automation background image — subtle, blended into navy */}
+      <div className="absolute inset-0 opacity-40">
+        <Image src="/services/SCADA.jpg" alt="" fill className="object-cover grayscale" />
+      </div>
+      <div className="absolute inset-0 bg-gradient-to-br from-[#121435] via-[#121435]/55 to-[#121435]/85" />
+
       <motion.div
         className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,87,34,0.2),transparent_50%)] pointer-events-none"
         animate={{ scale: [1, 1.1, 1], opacity: [0.6, 1, 0.6] }}

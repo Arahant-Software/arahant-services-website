@@ -22,6 +22,12 @@ const technologyPartners = [
 export default function Footer() {
   return (
     <footer className="relative overflow-hidden bg-[#121435] text-white">
+      {/* Automation background image — subtle, blended into navy */}
+      <div className="absolute inset-0 opacity-20">
+        <Image src="/banner/carousel5.jpg" alt="" fill className="object-cover grayscale" />
+      </div>
+      <div className="absolute inset-0 bg-gradient-to-br from-[#121435] via-[#121435]/70 to-[#121435]/90" />
+
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute -left-32 top-0 h-[300px] w-[300px] rounded-full bg-orange-600/10 blur-3xl" />
         <div className="absolute -right-32 bottom-0 h-[300px] w-[300px] rounded-full bg-orange-600/10 blur-3xl" />

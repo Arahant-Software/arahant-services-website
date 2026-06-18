@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 const containerVariants = {
@@ -15,7 +16,11 @@ const itemVariants = {
 export default function ContactHero() {
   return (
     <section className="relative min-h-[55vh] bg-[#121435] overflow-hidden">
-      <div className="absolute inset-0 bg-[#121435]/60 pointer-events-none" />
+      {/* Automation background image — subtle, blended into navy */}
+      <div className="absolute inset-0 opacity-40">
+        <Image src="/services/Vision.jpg" alt="" fill className="object-cover grayscale" />
+      </div>
+      <div className="absolute inset-0 bg-gradient-to-br from-[#121435] via-[#121435]/55 to-[#121435]/85" />
       <motion.div
         className="absolute right-0 top-0 h-[400px] w-[400px] rounded-full bg-orange-500/15 blur-3xl pointer-events-none"
         animate={{ scale: [1, 1.2, 1], opacity: [0.4, 0.8, 0.4] }}
