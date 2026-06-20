@@ -143,12 +143,6 @@ function NavLink({ href, label, pathname }) {
       >
         {label}
       </Link>
-      <motion.span
-        className="absolute left-0 -bottom-1 h-[2px] bg-orange-500 rounded-full"
-        initial={{ width: isActive ? "100%" : "0%" }}
-        whileHover={{ width: "100%" }}
-        transition={{ duration: 0.25 }}
-      />
     </li>
   );
 }

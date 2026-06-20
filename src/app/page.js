@@ -7,9 +7,7 @@ import Banner from "./components/Banner";
 import TechnologyPartners from "./components/TechnologyPartners";
 import CoreCapabilities from "./components/CoreCapabilities";
 import ProcurementSection from "./components/ProcurementSection";
-import GetCallbackModal from "./components/GetCallbackModal";
 import {
-  FadeUp,
   FadeLeft,
   FadeRight,
   StaggerContainer,
@@ -21,7 +19,6 @@ const VIEW = { once: true, margin: "-80px" };
 export default function Home() {
   return (
     <>
-      <GetCallbackModal />
       <Banner />
 
       {/* About / Intro Section */}

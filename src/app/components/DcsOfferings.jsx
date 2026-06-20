@@ -13,7 +13,7 @@ const offerings = [
   { title: "LabVIEW", subtitle: "Smart Inspection Systems", description: "Control systems, data acquisition, custom applications, TestStand, test jigs.", image: "/services/Vision.jpg" },
   { title: "Safety", subtitle: "Industrial Safety Systems", description: "CMSE® (Certified Machinery Safety Expert) – TÜV NORD certified. Risk assessment, safety evaluation, compliance with safety standards.", image: "/services/Safety.jpg" },
   { title: "SCADA", subtitle: "Supervisory Control & Data Acquisition", description: "Siemens WINCC, FactoryTalk View, Vijeo Citect, GE Ifix, Wonderware, Ignition.", image: "/services/SCADA.jpg" },
-  { title: "CNC Controllers", subtitle: "Advanced Machine Control", description: "Siemens Sinumerik CNC controllers — programming, commissioning, troubleshooting and support.", image: "/services/CNC.jpg" },
+  { title: "CNC Controllers", subtitle: "Advanced Machine Control", description: "Siemens Sinumerik CNC controllers — programming, commissioning, troubleshooting and support.", image: "/services/cnc-controllers.jpg" },
   { title: "DCS", subtitle: "Distributed Control Systems", description: "Siemens PCS7, Yokogawa, ABB and Emerson DCS solutions for process industries.", image: "/services/DCS.jpg" },
 ];
 

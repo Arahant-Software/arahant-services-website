@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight, Settings, Wrench } from "lucide-react";
 import { MagneticButton } from "./ui/Motion";
@@ -34,15 +33,17 @@ export default function Banner() {
       {/* Background Gradient */}
       <div className="absolute inset-0 bg-gradient-to-r from-[#1A1C3A] via-[#121435] to-[#1A1C3A]" />
 
-      {/* Automation background image — subtle, blended into navy */}
-      <div className="absolute inset-0 opacity-40">
-        <Image
-          src="/services/Robotics.jpg"
-          alt=""
-          fill
-          priority
-          className="object-cover grayscale"
-        />
+      {/* Food processing background video — subtle, blended into navy */}
+      <div className="absolute inset-0 opacity-60">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="h-full w-full object-cover"
+        >
+          <source src="/industries/Food%20Industry%20banner.mp4" type="video/mp4" />
+        </video>
       </div>
       <div className="absolute inset-0 bg-gradient-to-r from-[#121435] via-[#121435]/55 to-[#121435]/85" />
 

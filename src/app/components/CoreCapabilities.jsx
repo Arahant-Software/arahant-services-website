@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { Cpu, ShieldCheck, Zap, Wrench, Flame, ClipboardList, Package } from "lucide-react";
 import { FadeUp, StaggerContainer, StaggerChild, Counter } from "./ui/Motion";
@@ -11,12 +12,26 @@ const capabilities = [
     icon: Cpu,
     description: "PLC, HMI, SCADA, Motion Control, Vision, Robotics, DCS & Batch Control.",
     details: "Siemens, Rockwell, Omron, Mitsubishi, PCS7, Yokogawa & Emerson for FMCG, dairy, beverage & chemicals.",
+    href: "/services/industrial-process-automation",
   },
-  { title: "Machine Safety", icon: ShieldCheck, description: "Risk Assessments & Safety System Design.", details: "ISO 13849 / IEC 62061 compliant. CMSE® Certified." },
-  { title: "Electrical Engineering", icon: Zap, description: "Control Panels, Drawings & Diagnostics.", details: "2D/3D designs, switchboards, maintenance & troubleshooting." },
+  {
+    title: "Machine Safety",
+    icon: ShieldCheck,
+    description: "Risk Assessments & Safety System Design.",
+    details: "ISO 13849 / IEC 62061 compliant. CMSE® Certified.",
+    href: "/services/machine-safety",
+  },
+  {
+    title: "Electrical Engineering",
+    icon: Zap,
+    description: "Control Panels, Drawings & Diagnostics.",
+    details: "2D/3D designs, switchboards, maintenance & troubleshooting.",
+    href: "/services/electrical-engineering",
+  },
   {
     title: "Industrial Engineering Services",
     icon: Wrench,
+    href: "/services/industrial-engineering",
     subsections: [
       {
         label: "Installation",
@@ -30,8 +45,20 @@ const capabilities = [
       },
     ],
   },
-  { title: "Design & Project Management", icon: ClipboardList, description: "Concept Through Commissioning.", details: "3D modelling, FAT/SAT, commissioning & lifecycle support." },
-  { title: "Industrial Parts Procurement", icon: Package, description: "Strategic OEM Component Sourcing.", details: "Siemens, Rockwell, Schneider, Festo, SMC, Phoenix & Wago." },
+  {
+    title: "Design & Project Management",
+    icon: ClipboardList,
+    description: "Concept Through Commissioning.",
+    details: "3D modelling, FAT/SAT, commissioning & lifecycle support.",
+    href: "/services/project-management",
+  },
+  {
+    title: "Industrial Parts Procurement",
+    icon: Package,
+    description: "Strategic OEM Component Sourcing.",
+    details: "Siemens, Rockwell, Schneider, Festo, SMC, Phoenix & Wago.",
+    href: "/services/procurement",
+  },
 ];
 
 export default function CoreCapabilities() {
@@ -64,11 +91,12 @@ export default function CoreCapabilities() {
         </FadeUp>
 
         {/* Cards */}
-        <StaggerContainer stagger={0.07} delay={0.05} className="mt-12 lg:mt-20 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+        <StaggerContainer stagger={0.07} delay={0.05} className="mt-12 lg:mt-20 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {capabilities.map((item, index) => {
             const Icon = item.icon;
             return (
               <StaggerChild key={index}>
+                <Link href={item.href} className="block h-full">
                 <motion.div
                   whileHover={{ y: -8, backgroundColor: "#1A1C3A", borderColor: "rgba(255,87,34,0.2)", boxShadow: "0 20px 60px rgba(255,87,34,0.18)" }}
                   transition={{ duration: 0.3 }}
@@ -109,6 +137,7 @@ export default function CoreCapabilities() {
                     )}
                   </div>
                 </motion.div>
+                </Link>
               </StaggerChild>
             );
           })}

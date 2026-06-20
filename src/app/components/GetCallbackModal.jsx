@@ -71,7 +71,7 @@ export default function GetCallbackModal() {
     if (typeof window === "undefined") return;
     if (sessionStorage.getItem(SESSION_KEY)) return;
 
-    const timer = setTimeout(() => setIsOpen(true), 3000);
+    const timer = setTimeout(() => setIsOpen(true), 30000);
     return () => clearTimeout(timer);
   }, []);
 

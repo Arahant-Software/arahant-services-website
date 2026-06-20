@@ -1,31 +1,27 @@
 "use client";
 
+import Image from "next/image";
 import { FadeUp, Counter } from "./ui/Motion";
 
 const partners = [
-  "Siemens",
-  "Rockwell Automation",
-  "Schneider Electric",
-  "ABB",
-  "Omron",
-  "Mitsubishi Electric",
-  "SICK",
-  "Festo",
-  "Phoenix Contact",
-  "WAGO",
-  "SMC",
-  "Balluff",
-  "Burkert",
+  { name: "Siemens", logo: "/partners/siemens.webp" },
+  { name: "Schneider Electric", logo: "/partners/Schneider_Electric.svg" },
+  { name: "Omron", logo: "/partners/Omron.svg" },
+  { name: "SICK", logo: "/partners/sick.jpg" },
+  { name: "Festo", logo: "/partners/festo.svg" },
+  { name: "Phoenix Contact", logo: "/partners/phoenix.svg" },
+  { name: "WAGO", logo: "/partners/wago.png" },
+  { name: "SMC", logo: "/partners/smc.png" },
+  { name: "Balluff", logo: "/partners/Balluff.webp" },
+  { name: "Burkert", logo: "/partners/buerkert.svg" },
 ];
 
 /* Duplicate for seamless loop */
-const row1 = [...partners, ...partners];
-const row2 = [...partners].reverse();
-const row2Loop = [...row2, ...row2];
+const row = [...partners, ...partners];
 
 export default function TechnologyPartners() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-slate-50/80 via-white to-orange-50/30 py-20 lg:py-32">
+    <section className="relative overflow-hidden bg-gradient-to-br from-slate-50/80 via-white to-orange-50/30 pt-10 lg:pt-14 pb-20 lg:pb-32">
       {/* Background Effects */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute -left-32 top-0 h-[500px] w-[500px] rounded-full bg-orange-100/50 blur-3xl" />
@@ -58,7 +54,7 @@ export default function TechnologyPartners() {
 
         {/* Banner */}
         <FadeUp delay={0.1}>
-          <div className="mt-12 lg:mt-20 overflow-hidden rounded-3xl border border-white/50 bg-white/60 backdrop-blur-md p-6 sm:p-10 shadow-[0_10px_40px_rgba(255,87,34,0.08)]">
+          <div className="mt-8 lg:mt-10 overflow-hidden rounded-3xl border border-white/50 bg-white/60 backdrop-blur-md p-6 sm:p-10 shadow-[0_10px_40px_rgba(255,87,34,0.08)]">
             <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
               <div className="text-center lg:text-left flex-shrink-0">
                 <div className="text-5xl sm:text-6xl font-bold text-orange-600">
@@ -75,33 +71,24 @@ export default function TechnologyPartners() {
           </div>
         </FadeUp>
 
-        {/* ── Partner Carousel ── */}
+        {/* ── Partner Logo Carousel ── */}
         <FadeUp delay={0.15}>
-          <div className="mt-12 lg:mt-20 space-y-4 sm:space-y-5 overflow-hidden rounded-3xl border border-white/50 bg-white/60 backdrop-blur-md py-8 sm:py-10 shadow-[0_15px_50px_rgba(255,87,34,0.07)]">
-            {/* Row 1 */}
+          <div className="mt-12 lg:mt-20 overflow-hidden rounded-3xl border border-white/50 bg-white/60 backdrop-blur-md py-8 sm:py-10 shadow-[0_15px_50px_rgba(255,87,34,0.07)]">
             <div className="overflow-hidden marquee-fade">
-              <div className="flex animate-marquee gap-4 w-max">
-                {row1.map((name, i) => (
-                  <span
-                    key={`r1-${name}-${i}`}
-                    className="flex-shrink-0 whitespace-nowrap rounded-full border border-orange-200 bg-white px-6 py-3 text-sm sm:text-base font-semibold text-slate-700 shadow-sm"
+              <div className="flex animate-marquee items-center gap-10 sm:gap-14 w-max">
+                {row.map((partner, i) => (
+                  <div
+                    key={`${partner.name}-${i}`}
+                    className="flex h-16 w-32 sm:h-20 sm:w-40 flex-shrink-0 items-center justify-center"
                   >
-                    {name}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* Row 2 — opposite direction */}
-            <div className="overflow-hidden marquee-fade">
-              <div className="flex animate-marquee-reverse gap-4 w-max">
-                {row2Loop.map((name, i) => (
-                  <span
-                    key={`r2-${name}-${i}`}
-                    className="flex-shrink-0 whitespace-nowrap rounded-full border border-orange-200 bg-orange-50 px-6 py-3 text-sm sm:text-base font-semibold text-orange-700 shadow-sm"
-                  >
-                    {name}
-                  </span>
+                    <Image
+                      src={partner.logo}
+                      alt={partner.name}
+                      width={140}
+                      height={60}
+                      className="h-full w-full object-contain"
+                    />
+                  </div>
                 ))}
               </div>
             </div>

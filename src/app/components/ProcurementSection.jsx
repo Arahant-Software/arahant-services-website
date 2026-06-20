@@ -67,7 +67,7 @@ const rightCards = [
 
 export default function ProcurementLogisticsSection() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-slate-50/80 via-white to-orange-50/30 py-20 lg:py-32">
+    <section className="relative overflow-hidden bg-gradient-to-br from-slate-50/80 via-white to-orange-50/30 pt-20 lg:pt-32 pb-10 lg:pb-14">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute -left-40 top-0 h-[500px] w-[500px] rounded-full bg-orange-200/30 blur-3xl" />
         <div className="absolute -right-40 bottom-0 h-[500px] w-[500px] rounded-full bg-orange-100/40 blur-3xl" />

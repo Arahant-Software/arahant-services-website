@@ -14,8 +14,8 @@ const services = [
 ];
 
 const technologyPartners = [
-  "Siemens", "Rockwell", "Schneider", "ABB",
-  "Omron", "Mitsubishi", "Festo", "Phoenix",
+  "Siemens", "Schneider",
+  "Omron", "Festo", "Phoenix",
   "Wago", "Balluff",
 ];
 
@@ -39,7 +39,7 @@ export default function Footer() {
           <FadeUp delay={0}>
             <div className="sm:col-span-2 lg:col-span-1">
               <Image
-                src="/logo.png"
+                src="/logo1.png"
                 alt="Arahant"
                 width={200}
                 height={64}
@@ -108,12 +108,12 @@ export default function Footer() {
               <div className="space-y-4 text-slate-400">
                 <p className="text-sm sm:text-base font-medium text-white">New Zealand & Pacific Region</p>
                 <motion.a
-                  href="mailto:support@arahant.co.nz"
+                  href="mailto:info@arahant.co.nz"
                   whileHover={{ color: "#FF5722", x: 3 }}
                   transition={{ duration: 0.2 }}
                   className="block text-sm sm:text-base transition"
                 >
-                  support@arahant.co.nz
+                  info@arahant.co.nz
                 </motion.a>
                 <motion.a
                   href="https://www.arahant.co.nz"

@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ScrollProgress from "./components/ui/ScrollProgress";
+import GetCallbackModal from "./components/GetCallbackModal";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -14,6 +15,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className} suppressHydrationWarning>
         <ScrollProgress />
+        <GetCallbackModal />
         <Navbar />
         <main>
           {children}
