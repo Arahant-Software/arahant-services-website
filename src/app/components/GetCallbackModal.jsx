@@ -65,6 +65,8 @@ function TimeDropdown({ value, onChange }) {
 export default function GetCallbackModal() {
   const [isOpen, setIsOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
   const [form, setForm] = useState({ name: "", email: "", phone: "", time: "" });
 
   useEffect(() => {
@@ -80,11 +82,31 @@ export default function GetCallbackModal() {
     sessionStorage.setItem(SESSION_KEY, "true");
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    setSubmitted(true);
-    sessionStorage.setItem(SESSION_KEY, "true");
-    setTimeout(() => setIsOpen(false), 1800);
+    setError("");
+    setSubmitting(true);
+
+    try {
+      const res = await fetch("/api/callback-request", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || "Something went wrong. Please try again.");
+      }
+
+      setSubmitted(true);
+      sessionStorage.setItem(SESSION_KEY, "true");
+      setTimeout(() => setIsOpen(false), 1800);
+    } catch (err) {
+      setError(err.message || "Something went wrong. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -163,13 +185,18 @@ export default function GetCallbackModal() {
                     onChange={(time) => setForm({ ...form, time })}
                   />
 
+                  {error && (
+                    <p className="text-sm text-red-600">{error}</p>
+                  )}
+
                   <motion.button
                     type="submit"
-                    whileHover={{ scale: 1.03 }}
-                    whileTap={{ scale: 0.97 }}
-                    className="w-full rounded-full bg-orange-500 py-3.5 text-sm sm:text-base font-semibold text-white transition hover:bg-orange-600"
+                    disabled={submitting}
+                    whileHover={{ scale: submitting ? 1 : 1.03 }}
+                    whileTap={{ scale: submitting ? 1 : 0.97 }}
+                    className="w-full rounded-full bg-orange-500 py-3.5 text-sm sm:text-base font-semibold text-white transition hover:bg-orange-600 disabled:opacity-60 disabled:cursor-not-allowed"
                   >
-                    Request Call Back
+                    {submitting ? "Sending..." : "Request Call Back"}
                   </motion.button>
                 </form>
               </>
