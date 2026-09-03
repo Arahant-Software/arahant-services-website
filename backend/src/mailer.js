@@ -1,12 +1,6 @@
-import nodemailer from "nodemailer";
+const nodemailer = require("nodemailer");
 
 const TO_EMAIL = "rahulhulikoppe38@gmail.com";
-
-const TIME_LABELS = {
-  morning: "Morning",
-  afternoon: "Afternoon",
-  evening: "Evening",
-};
 
 function escapeHtml(value = "") {
   return String(value)
@@ -69,57 +63,39 @@ function buildHtml({ name, email, phone, timeLabel, receivedAt }) {
   </div>`;
 }
 
-export async function POST(request) {
-  try {
-    const { name, email, phone, time } = await request.json();
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.GMAIL_USER,
+    pass: process.env.GMAIL_APP_PASSWORD,
+  },
+});
 
-    if (!name || !phone) {
-      return Response.json(
-        { error: "Name and phone number are required." },
-        { status: 400 }
-      );
-    }
+async function sendCallbackEmail({ name, email, phone, timeLabel }) {
+  const receivedAt = new Date().toLocaleString("en-NZ", {
+    timeZone: "Pacific/Auckland",
+    dateStyle: "medium",
+    timeStyle: "short",
+  });
 
-    const timeLabel = TIME_LABELS[time] || "Not specified";
-    const receivedAt = new Date().toLocaleString("en-NZ", {
-      timeZone: "Pacific/Auckland",
-      dateStyle: "medium",
-      timeStyle: "short",
-    });
-
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.GMAIL_USER,
-        pass: process.env.GMAIL_APP_PASSWORD,
-      },
-    });
-
-    await transporter.sendMail({
-      from: `"Arahant Services Website" <${process.env.GMAIL_USER}>`,
-      to: TO_EMAIL,
-      replyTo: email || undefined,
-      subject: `New Call Back Request — ${name}`,
-      text: [
-        "New Call Back Request",
-        "",
-        `Name: ${name}`,
-        `Email: ${email || "Not provided"}`,
-        `Phone: ${phone}`,
-        `Preferred Call Time: ${timeLabel}`,
-        "",
-        `Received ${receivedAt} (NZT)`,
-        "Submitted via the call back form on the Arahant Services website",
-      ].join("\n"),
-      html: buildHtml({ name, email, phone, timeLabel, receivedAt }),
-    });
-
-    return Response.json({ success: true });
-  } catch (error) {
-    console.error("Callback request email failed:", error);
-    return Response.json(
-      { error: "Failed to send request. Please try again or call us directly." },
-      { status: 500 }
-    );
-  }
+  await transporter.sendMail({
+    from: `"Arahant Services Website" <${process.env.GMAIL_USER}>`,
+    to: TO_EMAIL,
+    replyTo: email || undefined,
+    subject: `New Call Back Request — ${name}`,
+    text: [
+      "New Call Back Request",
+      "",
+      `Name: ${name}`,
+      `Email: ${email || "Not provided"}`,
+      `Phone: ${phone}`,
+      `Preferred Call Time: ${timeLabel}`,
+      "",
+      `Received ${receivedAt} (NZT)`,
+      "Submitted via the call back form on the Arahant Services website",
+    ].join("\n"),
+    html: buildHtml({ name, email, phone, timeLabel, receivedAt }),
+  });
 }
+
+module.exports = { sendCallbackEmail };
