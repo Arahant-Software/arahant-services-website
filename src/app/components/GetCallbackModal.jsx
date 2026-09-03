@@ -88,7 +88,7 @@ export default function GetCallbackModal() {
     setSubmitting(true);
 
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/callback-request`, {
+      const res = await fetch("/api/callback-request", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),

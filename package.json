@@ -4,15 +4,16 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && node scripts/copy-standalone-assets.js",
+    "build": "next build",
     "postinstall": "npm run build",
-    "start": "node .next/standalone/server.js",
+    "start": "next start",
     "lint": "eslint"
   },
   "dependencies": {
     "framer-motion": "^12.23.26",
     "lucide-react": "^1.17.0",
     "next": "16.1.1",
+    "nodemailer": "^9.0.1",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-icons": "^5.5.0"
