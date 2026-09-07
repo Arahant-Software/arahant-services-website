@@ -149,7 +149,7 @@ export default function CoreCapabilities() {
             <div className="flex flex-col items-start gap-6 lg:flex-row lg:items-center lg:justify-between">
               <div className="flex-shrink-0">
                 <div className="text-4xl sm:text-5xl font-bold text-orange-500">
-                  <Counter to={20} suffix="+" />
+                  <Counter to={200} suffix="+" />
                 </div>
                 <div className="mt-2 text-slate-400 text-sm sm:text-base">Years Combined Industry Experience</div>
               </div>
