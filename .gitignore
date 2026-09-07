@@ -1,5 +1,8 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# dependencies (root-level node_modules for the merged GoDaddy deployment)
+/node_modules
+
 # misc
 .DS_Store
 *.pem

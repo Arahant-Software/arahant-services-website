@@ -1,0 +1,25 @@
+{
+  "name": "arahant-services-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Merged entry point for GoDaddy Node.js hosting — runs the Next.js frontend and the Express/MySQL backend in a single process. See frontend/ and backend/ for the actual source and local dev workflows.",
+  "scripts": {
+    "build": "npm install --prefix frontend && cd frontend && npx next build",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "@tailwindcss/postcss": "^4",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "framer-motion": "^12.23.26",
+    "lucide-react": "^1.17.0",
+    "mysql2": "^3.11.0",
+    "next": "16.1.1",
+    "nodemailer": "^9.0.1",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "react-icons": "^5.5.0",
+    "tailwindcss": "^4"
+  }
+}
