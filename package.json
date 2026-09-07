@@ -4,7 +4,7 @@
   "private": true,
   "description": "Merged entry point for GoDaddy Node.js hosting — runs the Next.js frontend and the Express/MySQL backend in a single process. See frontend/ and backend/ for the actual source and local dev workflows.",
   "scripts": {
-    "build": "npm install --prefix frontend && cd frontend && npx next build",
+    "build": "npm install --prefix frontend --ignore-scripts && cd frontend && npx next build --webpack",
     "start": "node server.js"
   },
   "dependencies": {
