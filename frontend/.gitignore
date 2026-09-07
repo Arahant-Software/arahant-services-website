@@ -35,6 +35,7 @@ yarn-error.log*
 # .env.production holds only a public NEXT_PUBLIC_ build-time value, no secrets —
 # commit it so it's present when the build runs on GoDaddy.
 !.env.production
+!.env.local.example
 
 # vercel
 .vercel

@@ -1,6 +1,7 @@
-const nodemailer = require("nodemailer");
+const { Resend } = require("resend");
 
 const TO_EMAIL = "rahulhulikoppe38@gmail.com";
+const FROM_EMAIL = "Arahant Services Website <onboarding@resend.dev>";
 
 function escapeHtml(value = "") {
   return String(value)
@@ -63,16 +64,7 @@ function buildHtml({ name, email, phone, timeLabel, receivedAt }) {
   </div>`;
 }
 
-const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 587,
-  secure: false,
-  requireTLS: true,
-  auth: {
-    user: process.env.GMAIL_USER,
-    pass: process.env.GMAIL_APP_PASSWORD,
-  },
-});
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 async function sendCallbackEmail({ name, email, phone, timeLabel }) {
   const receivedAt = new Date().toLocaleString("en-NZ", {
@@ -81,8 +73,8 @@ async function sendCallbackEmail({ name, email, phone, timeLabel }) {
     timeStyle: "short",
   });
 
-  await transporter.sendMail({
-    from: `"Arahant Services Website" <${process.env.GMAIL_USER}>`,
+  const { error } = await resend.emails.send({
+    from: FROM_EMAIL,
     to: TO_EMAIL,
     replyTo: email || undefined,
     subject: `New Call Back Request — ${name}`,
@@ -99,6 +91,10 @@ async function sendCallbackEmail({ name, email, phone, timeLabel }) {
     ].join("\n"),
     html: buildHtml({ name, email, phone, timeLabel, receivedAt }),
   });
+
+  if (error) {
+    throw new Error(`Resend failed: ${error.message || JSON.stringify(error)}`);
+  }
 }
 
 module.exports = { sendCallbackEmail };
