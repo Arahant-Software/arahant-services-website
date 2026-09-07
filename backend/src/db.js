@@ -14,9 +14,21 @@ const pool = mysql.createPool({
 
 pool
   .getConnection()
-  .then((connection) => {
+  .then(async (connection) => {
     console.log(`MySQL connected — ${process.env.DB_NAME}@${process.env.DB_HOST}:${process.env.DB_PORT || 3306}`);
     connection.release();
+
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS callback_requests (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(255) NOT NULL,
+        email VARCHAR(255),
+        phone VARCHAR(50) NOT NULL,
+        preferred_time VARCHAR(50),
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+    console.log("callback_requests table ready");
   })
   .catch((error) => {
     console.error("MySQL connection failed:", error.message);
