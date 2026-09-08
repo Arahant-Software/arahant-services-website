@@ -1,4 +1,4 @@
-const nodemailer = require("nodemailer");
+const { google } = require("googleapis");
 
 const TO_EMAIL = "info@arahant.co.nz";
 
@@ -63,16 +63,49 @@ function buildHtml({ name, email, phone, timeLabel, receivedAt }) {
   </div>`;
 }
 
-const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 587,
-  secure: false,
-  requireTLS: true,
-  auth: {
-    user: process.env.GMAIL_USER,
-    pass: process.env.GMAIL_APP_PASSWORD,
-  },
-});
+const oauth2Client = new google.auth.OAuth2(
+  process.env.GOOGLE_CLIENT_ID,
+  process.env.GOOGLE_CLIENT_SECRET,
+  "https://developers.google.com/oauthplayground"
+);
+oauth2Client.setCredentials({ refresh_token: process.env.GOOGLE_REFRESH_TOKEN });
+
+const gmail = google.gmail({ version: "v1", auth: oauth2Client });
+
+function encodeSubject(subject) {
+  return `=?UTF-8?B?${Buffer.from(subject, "utf-8").toString("base64")}?=`;
+}
+
+function buildRawMessage({ from, to, replyTo, subject, text, html }) {
+  const boundary = `boundary_${Date.now()}`;
+
+  const lines = [
+    `From: ${from}`,
+    `To: ${to}`,
+    replyTo ? `Reply-To: ${replyTo}` : null,
+    `Subject: ${encodeSubject(subject)}`,
+    "MIME-Version: 1.0",
+    `Content-Type: multipart/alternative; boundary="${boundary}"`,
+    "",
+    `--${boundary}`,
+    "Content-Type: text/plain; charset=UTF-8",
+    "",
+    text,
+    "",
+    `--${boundary}`,
+    "Content-Type: text/html; charset=UTF-8",
+    "",
+    html,
+    "",
+    `--${boundary}--`,
+  ].filter((line) => line !== null);
+
+  return Buffer.from(lines.join("\r\n"))
+    .toString("base64")
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_")
+    .replace(/=+$/, "");
+}
 
 async function sendCallbackEmail({ name, email, phone, timeLabel }) {
   const receivedAt = new Date().toLocaleString("en-NZ", {
@@ -81,8 +114,8 @@ async function sendCallbackEmail({ name, email, phone, timeLabel }) {
     timeStyle: "short",
   });
 
-  await transporter.sendMail({
-    from: `"Arahant Services Website" <${process.env.GMAIL_USER}>`,
+  const raw = buildRawMessage({
+    from: `Arahant Services Website <${process.env.GMAIL_USER}>`,
     to: TO_EMAIL,
     replyTo: email || undefined,
     subject: `New Call Back Request — ${name}`,
@@ -98,6 +131,11 @@ async function sendCallbackEmail({ name, email, phone, timeLabel }) {
       "Submitted via the call back form on the Arahant Services website",
     ].join("\n"),
     html: buildHtml({ name, email, phone, timeLabel, receivedAt }),
+  });
+
+  await gmail.users.messages.send({
+    userId: "me",
+    requestBody: { raw },
   });
 }
 
