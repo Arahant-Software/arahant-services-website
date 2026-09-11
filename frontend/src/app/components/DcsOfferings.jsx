@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { FadeUp, StaggerContainer, StaggerChild, Counter } from "./ui/Motion";
 
@@ -51,6 +52,12 @@ export default function DcsOfferings() {
               Arahant provides comprehensive service and support for all types of
               industrial control systems. No matter what your automation platform
               or equipment manufacturer, our team has the expertise to support it.
+            </p>
+            <p className="mx-auto mt-4 max-w-4xl text-sm sm:text-base text-slate-500">
+              Siemens is one of our most-used platforms —{" "}
+              <Link href="/services/siemens-automation" className="font-semibold text-orange-600 hover:underline">
+                see our dedicated Siemens automation page →
+              </Link>
             </p>
           </div>
         </FadeUp>

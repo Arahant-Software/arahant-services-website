@@ -6,10 +6,12 @@ import { motion } from "framer-motion";
 import { FadeUp } from "./ui/Motion";
 
 const services = [
-  { label: "Industrial Automation", href: "/services/automation" },
-  { label: "Electrical Engineering", href: "/services/electrical" },
-  { label: "Process Installation", href: "/services/process-installation" },
-  { label: "Mechanical & Welding", href: "/services/mechanical" },
+  { label: "Siemens Automation", href: "/services/siemens-automation" },
+  { label: "Industrial Process Automation", href: "/services/industrial-process-automation" },
+  { label: "Machine Safety", href: "/services/machine-safety" },
+  { label: "Electrical Engineering", href: "/services/electrical-engineering" },
+  { label: "Industrial Engineering", href: "/services/industrial-engineering" },
+  { label: "Project Management", href: "/services/project-management" },
   { label: "Procurement & Logistics", href: "/services/procurement" },
 ];
 
@@ -46,9 +48,9 @@ export default function Footer() {
                 className="h-auto w-auto max-w-[180px]"
               />
               <p className="mt-6 text-sm sm:text-base leading-7 text-slate-400">
-                Control system solutions that enhance productivity,
-                reliability and operational performance across New Zealand
-                and the Pacific region.
+                Siemens automation and control system solutions that enhance
+                productivity, reliability and operational performance across
+                New Zealand, Fiji and Australia.
               </p>
               <div className="mt-6 flex gap-2">
                 {[1, 0.6, 0.3].map((opacity, i) => (
@@ -106,7 +108,7 @@ export default function Footer() {
             <div>
               <h3 className="mb-5 text-lg sm:text-xl font-bold text-white">Contact</h3>
               <div className="space-y-4 text-slate-400">
-                <p className="text-sm sm:text-base font-medium text-white">New Zealand & Pacific Region</p>
+                <p className="text-sm sm:text-base font-medium text-white">New Zealand, Fiji & Australia</p>
                 <motion.a
                   href="mailto:info@arahant.co.nz"
                   whileHover={{ color: "#FF5722", x: 3 }}

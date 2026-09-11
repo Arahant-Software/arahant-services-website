@@ -117,11 +117,11 @@ export default function Banner() {
               variants={item}
               className="mt-6 text-gray-300 text-base sm:text-lg max-w-xl leading-relaxed"
             >
-              Arahant provides end-to-end automation, electrical engineering,
-              and process installation solutions for high-performing industrial
-              sites, helping manufacturing and FMCG operations across New
-              Zealand and the Pacific improve efficiency, reliability, and
-              output.
+              Arahant provides end-to-end Siemens automation, electrical
+              engineering, and process installation solutions for
+              high-performing industrial sites, helping manufacturing and
+              FMCG operations across New Zealand, Fiji and Australia improve
+              efficiency, reliability, and output.
             </motion.p>
 
             <motion.div variants={item} className="flex flex-wrap gap-4 mt-8">

@@ -69,9 +69,9 @@ export default function AboutHero() {
             <motion.div variants={item} className="mt-5 h-1 w-20 rounded-full bg-orange-500" />
 
             <motion.p variants={item} className="mt-6 max-w-xl text-base sm:text-lg leading-8 text-slate-300">
-              Arahant Services Ltd is a premier New Zealand-based engineering
-              and industrial automation firm delivering end-to-end control
-              system solutions across the Pacific region.
+              Arahant Services Ltd is a premier New Zealand-based Siemens
+              automation and engineering firm delivering end-to-end control
+              system solutions across New Zealand, Fiji and Australia.
             </motion.p>
 
             <motion.p variants={item} className="mt-4 max-w-xl text-sm sm:text-base leading-7 text-slate-400">
@@ -173,7 +173,7 @@ export default function AboutHero() {
               </div>
               <div>
                 <div className="text-sm font-semibold text-white">Years Experience</div>
-                <div className="text-xs text-slate-400">NZ &amp; Pacific Region</div>
+                <div className="text-xs text-slate-400">NZ, Fiji &amp; Australia</div>
               </div>
             </motion.div>
 
@@ -201,10 +201,10 @@ export default function AboutHero() {
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 lg:gap-4">
             {[
               "CMSE® TÜV NORD Certified",
+              "Siemens Automation Specialists",
               "IIoT & Industry 4.0 Ready",
-              "Multi-Vendor Automation Expertise",
               "End-to-End Project Delivery",
-              "Pacific Region Coverage",
+              "NZ, Fiji & Australia Coverage",
               "24/7 Technical Support",
             ].map((label, i) => (
               <motion.div

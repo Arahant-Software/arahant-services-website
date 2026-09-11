@@ -6,6 +6,7 @@ const cors = require("cors");
 const next = require("next");
 
 const callbackRoutes = require("./backend/src/routes/callbackRequest");
+const contactRoutes = require("./backend/src/routes/contactRequest");
 
 const dev = process.env.NODE_ENV !== "production";
 const nextApp = next({ dev, dir: path.join(__dirname, "frontend") });
@@ -21,6 +22,7 @@ app.use(express.json());
 
 app.get("/health", (req, res) => res.json({ status: "ok" }));
 app.use("/api", callbackRoutes);
+app.use("/api", contactRoutes);
 
 nextApp.prepare().then(() => {
   app.all(/.*/, (req, res) => handle(req, res));

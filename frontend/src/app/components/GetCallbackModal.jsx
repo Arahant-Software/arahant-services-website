@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, PhoneCall, CheckCircle2, ChevronDown } from "lucide-react";
+import CountryCodeSelect from "./ui/CountryCodeSelect";
 
 const SESSION_KEY = "callbackPopupShown";
 
@@ -67,7 +68,7 @@ export default function GetCallbackModal() {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
-  const [form, setForm] = useState({ name: "", email: "", phone: "", time: "" });
+  const [form, setForm] = useState({ name: "", email: "", phone: "", countryCode: "+64", time: "" });
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -91,7 +92,12 @@ export default function GetCallbackModal() {
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/callback-request`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          phone: `${form.countryCode} ${form.phone}`.trim(),
+          time: form.time,
+        }),
       });
 
       if (!res.ok) {
@@ -172,14 +178,21 @@ export default function GetCallbackModal() {
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
                     className="h-12 w-full rounded-xl border border-slate-200 px-4 text-sm outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100 transition"
                   />
-                  <input
-                    type="tel"
-                    required
-                    placeholder="Phone Number"
-                    value={form.phone}
-                    onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                    className="h-12 w-full rounded-xl border border-slate-200 px-4 text-sm outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100 transition"
-                  />
+                  <div className="flex gap-2">
+                    <CountryCodeSelect
+                      value={form.countryCode}
+                      onChange={(countryCode) => setForm({ ...form, countryCode })}
+                      className="w-24 flex-shrink-0"
+                    />
+                    <input
+                      type="tel"
+                      required
+                      placeholder="Phone Number"
+                      value={form.phone}
+                      onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                      className="h-12 w-full min-w-0 rounded-xl border border-slate-200 px-4 text-sm outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100 transition"
+                    />
+                  </div>
                   <TimeDropdown
                     value={form.time}
                     onChange={(time) => setForm({ ...form, time })}

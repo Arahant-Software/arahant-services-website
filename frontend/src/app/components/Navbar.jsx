@@ -9,6 +9,10 @@ import { FaLinkedinIn, FaBars, FaTimes, FaChevronDown } from "react-icons/fa";
 
 const services = [
   {
+    label: "Siemens Automation",
+    href: "/services/siemens-automation",
+  },
+  {
     label: "Industrial Process Automation",
     href: "/services/industrial-process-automation",
   },
