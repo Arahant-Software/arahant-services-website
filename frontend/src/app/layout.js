@@ -13,11 +13,17 @@ const inter = Inter({
 export const metadata = {
   metadataBase: new URL("https://arahant.co.nz"),
   title: {
-    default: "Arahant Services | Siemens PLC, SCADA & Industrial Automation Specialists",
+    default:
+      "Arahant Services | Siemens PLC, SCADA & Industrial Automation Specialists",
     template: "%s | Arahant Services",
   },
   description:
     "Arahant Services delivers Siemens PLC programming, SCADA integration, HMI development, machine safety, electrical engineering and industrial process automation across New Zealand, Fiji and Australia.",
+
+  // Google Search Console
+  verification: {
+    google: "r_T9B7NqguBH-wyZ04MdHFVylzFhGWXeES3Pi6FjZJY",
+  },
   keywords: [
     "Siemens PLC programming",
     "Siemens SCADA integration",
@@ -46,7 +52,9 @@ export const metadata = {
     title: "Arahant Services | Siemens & Industrial Automation Specialists",
     description:
       "Siemens PLC, SCADA, HMI and DCS programming, plus machine safety, electrical engineering and industrial process automation across New Zealand, Fiji and Australia.",
-    images: [{ url: "/logo.png", width: 512, height: 512, alt: "Arahant Services" }],
+    images: [
+      { url: "/logo.png", width: 512, height: 512, alt: "Arahant Services" },
+    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -110,14 +118,14 @@ export default function RootLayout({ children }) {
       <body className={inter.className} suppressHydrationWarning>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationJsonLd),
+          }}
         />
         <ScrollProgress />
         <GetCallbackModal />
         <Navbar />
-        <main>
-          {children}
-        </main>
+        <main>{children}</main>
         <Footer />
       </body>
     </html>
